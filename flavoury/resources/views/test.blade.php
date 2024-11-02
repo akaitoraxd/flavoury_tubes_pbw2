@@ -13,29 +13,20 @@
             <a href="/">
                 <h1 class="text-4xl font-semibold italic text-[#6A994E] mb-8 text-center duration-300 transform hover:scale-125 cursor-pointer">Flavoury</h1>
             </a>
-            <form class="space-y-6" method="POST" action="{{ route('login') }}">
-                @csrf
+            <form class="space-y-6">
                 <!-- Email -->
                 <div>
-                    <input id="email" type="email" name="email" placeholder="Email" class="w-full border-b border-gray-300 text-gray-700 py-2 focus:outline-none focus:border-green-500 bg-transparent placeholder-gray-500 transition-colors duration-300" required autofocus>
-                    @error('email')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
+                    <input type="text" placeholder="Email" class="w-full border-b border-gray-300 text-gray-700 py-2 focus:outline-none focus:border-green-500 bg-transparent placeholder-gray-500 transition-colors duration-300">
                 </div>
                 
                 <!-- Password -->
                 <div>
-                    <input id="password" type="password" name="password" placeholder="Password" class="w-full border-b border-gray-300 text-gray-700 py-2 focus:outline-none focus:border-green-500 bg-transparent placeholder-gray-500 transition-colors duration-300" required>
-                    @error('password')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
+                    <input type="password" placeholder="Password" class="w-full border-b border-gray-300 text-gray-700 py-2 focus:outline-none focus:border-green-500 bg-transparent placeholder-gray-500 transition-colors duration-300">
                 </div>
                 
                 <!-- Forgot Password -->
                 <div class="text-sm text-gray-600 mt-2">
-                    @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}" class="hover:underline hover:text-green-600 transition duration-300">Forgot password?</a>
-                    @endif
+                    <a href="#" class="hover:underline hover:text-green-600 transition duration-300">forgot password?</a>
                 </div>
                 
                 <!-- Login Button -->
@@ -45,7 +36,7 @@
                 
                 <!-- Sign Up Link -->
                 <div class="text-center text-gray-600 mt-6">
-                    Don’t have an account? <a href="{{ route('register') }}" class="font-semibold text-[#6A994E] hover:underline transition duration-300">Sign Up</a>
+                    don’t have an account? <a href="#" class="font-semibold text-[#6A994E] hover:underline transition duration-300">Sign Up</a>
                 </div>
             </form>
         </div>
