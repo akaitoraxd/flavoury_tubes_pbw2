@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id("id_recipe");
             $table->unsignedBigInteger("id_user");
+            $table->string("name_recipe", 100);
             $table->char("descrip_recipe", 250);
             $table->char("ingredient", 250);
             $table->char("location", 100);
