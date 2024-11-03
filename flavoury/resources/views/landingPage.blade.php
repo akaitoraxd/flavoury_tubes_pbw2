@@ -61,7 +61,7 @@
             <!-- login -->
             <a href="/login" class="text-white text-lg hover:text-yellow-500 transition duration-300">LOG IN</a>
             <!-- sign up -->
-            <a href="/login" class="text-white text-lg hover:text-yellow-500 hover:bg-gray-300 hover:bg-opacity-25 transition duration-300 bg-opacity-40 bg-gray-200 rounded-full py-2 px-5 ">SIGN UP</a>
+            <a href="/register" class="text-white text-lg hover:text-yellow-500 hover:bg-gray-300 hover:bg-opacity-25 transition duration-300 bg-opacity-40 bg-gray-200 rounded-full py-2 px-5 ">SIGN UP</a>
         </div>
     </header>
 
