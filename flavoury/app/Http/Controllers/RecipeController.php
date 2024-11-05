@@ -14,7 +14,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        // Tambahkan logika untuk menampilkan daftar resep
+        
     }
 
     /**
@@ -30,34 +30,46 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
         $validatedData = $request->validate([
             'name_recipe' => 'required|string|max:255',
             'descrip_recipe' => 'required|string',
             'ingredient' => 'required|string',
             'location' => 'required|string|max:255',
             'flow_cooking' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // opsional
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
 
-        // Proses upload gambar dengan nama hash
         if ($request->hasFile('image')) {
             $filename = Str::random(40) . '.' . $request->file('image')->getClientOriginalExtension();
             $imagePath = $request->file('image')->storeAs('images', $filename);
 
-            // Simpan nama file ke dalam database
             $validatedData['image'] = $filename;
         }
 
-        // Tambahkan ID pengguna yang sedang login
         $validatedData['id_user'] = auth()->id();
 
         // Simpan data ke dalam tabel recipes
         Recipe::create($validatedData);
 
-        // Redirect dengan pesan sukses
         return redirect()->route('addRecipe')->with('success', 'Recipe successfully added!');
+    }
+
+    public function showOwnRecipe()
+    {
+        $recipes = Recipe::where('id_user', auth()->id())->get();
+        return view('test', compact('recipes'));
+    }
+
+    public function show($id)
+    {
+        $recipe = Recipe::where('id_recipe', $id)->firstOrFail();
+
+        if ($recipe->id_user !== auth()->id()) {
+            return redirect()->route('showOwnRecipe');
+        }
+    
+        return view('show', compact('recipe'));
     }
 
     /**
@@ -65,47 +77,84 @@ class RecipeController extends Controller
      */
     public function getImage($filename)
     {
-        $filePath = 'public/images/' . $filename;
-
-        if (Storage::exists($filePath)) {
-            // Kembalikan file untuk diunduh
-            return Storage::download($filePath);
-            // Jika ingin menampilkan langsung di browser:
-            // return response()->file(storage_path('app/' . $filePath));
-        }
-
-        return abort(404, 'Image not found');
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Recipe $recipe)
-    {
-        // Tambahkan logika untuk menampilkan resep tertentu
-    }
+
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Recipe $recipe)
+    // public function edit(Recipe $recipe)
+    // {
+        
+    // }
+
+    public function edit($id)
     {
-        // Tambahkan logika untuk form edit resep
+        $recipe = Recipe::findOrFail($id); // Mengambil resep berdasarkan id
+        return view('editRecipe', compact('recipe')); // Kirim data ke view editRecipe
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Recipe $recipe)
+    // public function update(Request $request, Recipe $recipe)
+    // {
+        
+    // }
+
+    public function update(Request $request, $id)
     {
-        // Tambahkan logika untuk update resep
+        $recipe = Recipe::findOrFail($id);
+
+        // Validasi input
+        $validatedData = $request->validate([
+            'name_recipe' => 'required|string|max:255',
+            'descrip_recipe' => 'required|string',
+            'ingredient' => 'required|string',
+            'location' => 'required|string|max:255',
+            'flow_cooking' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
+        ]);
+
+        
+        if ($request->hasFile('image')) {
+            
+            if ($recipe->image && Storage::disk('public')->exists('images/' . $recipe->image)) {
+                Storage::disk('public')->delete('images/' . $recipe->image);
+            }
+
+            // Up gambar baru
+            $filename = Str::random(40) . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('images', $filename, 'public');
+            $validatedData['image'] = $filename;
+        }
+
+        $recipe->update($validatedData);
+
+        return redirect()->route('recipe.show', $recipe->id_recipe)->with('success', 'Recipe updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Recipe $recipe)
+    public function destroy($id_recipe)
     {
-        // Tambahkan logika untuk menghapus resep
+        $recipe = Recipe::where('id_recipe', $id_recipe)->firstOrFail();
+
+        // if ($recipe->image && Storage::exists('storage/images/'.$recipe->image)) {
+        //     Storage::delete('storage/images/' . $recipe->image);
+        // }
+
+        if ($recipe->image && Storage::disk('public')->exists('images/' . $recipe->image)) {
+            Storage::disk('public')->delete('images/' . $recipe->image);
+        }
+
+        $recipe->delete();
+
+        return redirect()->route('showOwnRecipe')->with('success', 'Recipe deleted successfully!');
     }
+
 }

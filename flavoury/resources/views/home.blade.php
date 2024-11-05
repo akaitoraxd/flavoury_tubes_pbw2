@@ -188,6 +188,23 @@
             
         </div>
     </section>
+
+    <footer class="bg-[#F1E4C3] text-center">
+        <div class="space-y-2 py-7 border-b-4 border-[#9B978D]">
+            <h1 class="text-3xl italic font-semibold">Flavoury</h1>
+            <p class="px-96">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur molestias facere dolores libero sit non numquam nostrum possimus rem consectetur fuga quaerat facilis nemo, totam ipsum culpa. Enim, cupiditate!</p>
+        </div>
+        <div class="flex items-center justify-between px-7 py-3">
+            <div>
+                <p>&copy;2024 Flavoury - All right reserved</p>
+            </div>
+            <div class="flex justify-center space-x-7">
+                <img src="https://img.icons8.com/?size=100&id=62225&format=png&color=000000"  alt="fb" class="w-5 h-5">
+                <img src="https://img.icons8.com/?size=100&id=437&format=png&color=000000"  alt="x" class="w-5 h-5">
+                <img src="https://img.icons8.com/?size=100&id=32292&format=png&color=000000"  alt="ig" class="w-5 h-5">
+            </div>
+        </div>
+    </footer>
     
 </body>
 </html>

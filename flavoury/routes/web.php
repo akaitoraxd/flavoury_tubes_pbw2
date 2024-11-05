@@ -12,25 +12,28 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/test2', function () {
-    return view('test2');
+Route::get('/home', function () {
+    return view('home');
 });
 
-// Form tambah resep dengan middleware autentikasi
 Route::get('/addrecipe', [RecipeController::class, 'create'])->middleware(['auth', 'verified'])->name('addRecipe');
 
-// Penyimpanan resep menggunakan method store pada RecipeController
-Route::post('/recipe/store', [RecipeController::class, 'store'])->name('recipe.store');
+Route::post('/recipe/store', [RecipeController::class, 'store'])->middleware(['auth', 'verified'])->name('recipe.store');
 
-// Mengakses gambar private menggunakan filename
-Route::get('/recipe/image/{filename}', [RecipeController::class, 'getImage'])->name('recipe.image');
+Route::get('/test', [RecipeController::class, 'showOwnRecipe'])->middleware(['auth', 'verified'])->name('showOwnRecipe');
 
-// Halaman dashboard hanya bisa diakses oleh pengguna yang terautentikasi
+Route::get('/recipe/{id}', [RecipeController::class, 'show'])->middleware(['auth', 'verified'])->name('recipe.show');
+
+Route::delete('/recipe/{id}', [RecipeController::class, 'destroy'])->middleware(['auth', 'verified'])->name('recipe.destroy');
+
+Route::get('/recipe/{id}/edit', [RecipeController::class, 'edit'])->middleware(['auth', 'verified'])->name('recipe.edit');
+
+Route::patch('/recipe/{id}', [RecipeController::class, 'update'])->middleware(['auth', 'verified'])->name('recipe.update');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Autentikasi untuk halaman profil
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

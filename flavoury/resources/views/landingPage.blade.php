@@ -29,7 +29,7 @@
             
             <!-- Navigation Arrows -->
             <div onclick="prevSlide()" class="absolute left-0 top-[60%] py-1 px-4 bg-black rounded-full transform -translate-y-1/2 text-4xl text-white cursor-pointer z-20 ml-4">&#10094;</div>
-            <div onclick="nextSlide()" class="absolute right-0 top-[60%] p-4 bg-black rounded-full transform -translate-y-1/2 text-4xl text-white cursor-pointer z-20 mr-4">&#10095;</div>
+            <div onclick="nextSlide()" class="absolute right-0 top-[60%] py-1 px-4 bg-black rounded-full transform -translate-y-1/2 text-4xl text-white cursor-pointer z-20 mr-4">&#10095;</div>
         </div>        
     </section>
 
