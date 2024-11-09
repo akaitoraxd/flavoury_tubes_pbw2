@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flavoury Sign Up</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    @Vite('resources/css/app.css')
 </head>
 <body class="bg-[#FFFFEC]">
-    <nav class="flex justify-between px-7 py-5 ">
+    <nav class="flex justify-between px-7 py-5">
         <div>
             <p class="text-2xl font-bold text-black italic">Flavoury</p>
         </div>

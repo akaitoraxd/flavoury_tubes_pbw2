@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flavoury</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    @Vite('resources/css/app.css')
+
 </head>
 <body class="bg-[#FFFFEC]">
     <section class="h-screen flex flex-col justify-center items-center bg-[#FFFFEC] relative">
@@ -208,14 +210,20 @@
         </div>
     </section>
 
-    <footer class="w-full bg-[#F1E4C3] text-center  space-y-3">
-        <div class="py-10 px-80 space-y-2">
-            <h1 class="text-4xl font-bold">FLAVOURY</h1>
-            <p class="text-[18px] text-gray-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum assumenda pariatur dolores! Quod autem tenetur, aspernatur tempora alias deleniti vitae excepturi veritatis, corporis labore repellat laboriosam laudantium quo neque ipsa.</p>
+    <footer class="bg-[#F1E4C3] text-center">
+        <div class="space-y-2 py-7 border-b-4 border-[#9B978D]">
+            <h1 class="text-3xl italic font-semibold">Flavoury</h1>
+            <p class="px-96">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur molestias facere dolores libero sit non numquam nostrum possimus rem consectetur fuga quaerat facilis nemo, totam ipsum culpa. Enim, cupiditate!</p>
         </div>
-        <hr class="border border-t-2 border-black w-full">
-        <div class="pb-3">
-            <p>apa</p>
+        <div class="flex items-center justify-between px-7 py-3">
+            <div>
+                <p>&copy;2024 Flavoury - All right reserved</p>
+            </div>
+            <div class="flex justify-center space-x-7">
+                <img src="https://img.icons8.com/?size=100&id=62225&format=png&color=000000"  alt="fb" class="w-5 h-5">
+                <img src="https://img.icons8.com/?size=100&id=437&format=png&color=000000"  alt="x" class="w-5 h-5">
+                <img src="https://img.icons8.com/?size=100&id=32292&format=png&color=000000"  alt="ig" class="w-5 h-5">
+            </div>
         </div>
     </footer>
 

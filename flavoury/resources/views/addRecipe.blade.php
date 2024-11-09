@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Recipe</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    @Vite('resources/css/app.css')
+
 </head>
 <body class="bg-gray-100">
     <a href="/dashboard" class="p-10">Home</a>
