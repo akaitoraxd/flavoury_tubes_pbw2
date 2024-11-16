@@ -10,7 +10,9 @@
 <body class="bg-[#FFFFEC]">
     <nav class="flex justify-between px-7 py-5">
         <div>
-            <p class="text-2xl font-bold text-black italic">Flavoury</p>
+            <!-- <p class="text-2xl font-bold text-black italic">Flavoury</p> -->
+            <img src="/storage/FLAVOURY.png" alt="" class="h-8">
+
         </div>
 
         <div class="flex space-x-6 text-[20px]">
@@ -191,8 +193,9 @@
     </section>
 
     <footer class="bg-[#F1E4C3] text-center">
-        <div class="space-y-2 py-7 border-b-4 border-[#9B978D]">
-            <h1 class="text-3xl italic font-semibold">Flavoury</h1>
+        <div class="space-y-2 py-7 border-b-4 border-[#9B978D] flex flex-col justify-center items-center">
+            <!-- <h1 class="text-3xl italic font-semibold">Flavoury</h1> -->
+            <img src="/storage/FLAVOURY.png" alt="" class="h-10">
             <p class="px-96">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur molestias facere dolores libero sit non numquam nostrum possimus rem consectetur fuga quaerat facilis nemo, totam ipsum culpa. Enim, cupiditate!</p>
         </div>
         <div class="flex items-center justify-between px-7 py-3">

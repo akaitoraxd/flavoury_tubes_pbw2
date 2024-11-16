@@ -16,6 +16,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/pencarian', function () {
+    return view('pencarian');
+});
+
 Route::get('/addrecipe', [RecipeController::class, 'create'])->middleware(['auth', 'verified'])->name('addRecipe');
 
 Route::post('/recipe/store', [RecipeController::class, 'store'])->middleware(['auth', 'verified'])->name('recipe.store');

@@ -9,11 +9,18 @@
 
 </head>
 <body class="bg-[#FFFFEC]">
+
+    <nav class="bg-[#F1E4C3] py-4 px-8 flex justify-end items-center shadow-md fixed top-0 left-0 w-full z-50">
+        <a href="/login" class="bg-[#C6A969] text-black py-1 px-7 rounded-md border border-black hover:bg-yellow-600 shadow-[4px_4px_0px_rgba(105,63,35,0.7)]">
+            Login
+        </a>
+    </nav>
+
     <section class="h-screen flex flex-col justify-center items-center bg-[#FFFFEC] relative">
-        <div class="absolute top-0 left-0 right-0 flex justify-center bg-[#FFFFEC] z-10">
-            <h1 class="text-5xl font-bold text-black">Flavoury</h1>
+        <div class="absolute top-0 left-0 right-0 flex justify-center bg-[#FFFFEC] mt-24 z-10">
+             <img src="/storage/FLAVOURY.png" alt="">
         </div>
-        <div class="absolute top-0 left-0 right-0 mt-20 flex justify-center space-x-5 font-bold text-2xl z-10">
+        <div class="absolute top-0 left-0 right-0 mt-40 flex justify-center space-x-5 font-bold text-2xl z-10">
             <a href="">Home</a>
             <a href="">Feature</a>
             <a href="">Market</a>
@@ -23,7 +30,7 @@
         <!-- Carousel Section -->
         <div class="relative w-full h-full flex items-center justify-center overflow-hidden bottom-0">
             <!-- Carousel Images -->
-            <div class="absolute w-full h-[80%] bottom-0">
+            <div class="absolute w-full h-[70%] bottom-0">
                 <img src="/storage/cooking.jpg" alt="carousel" class="carousel-image w-full h-full object-cover hidden">
                 <img src="/storage/ayamgoreng.png" alt="carousel" class="carousel-image w-full h-full object-cover hidden">
                 <img src="/storage/martabak.png" alt="carousel" class="carousel-image w-full h-full object-cover hidden">
@@ -81,7 +88,7 @@
         <h1 class="font-bold text-3xl ml-32">Paling Nikmat</h1>
         <div class="flex flex-wrap justify-center items-start gap-x-20">
             <!-- card 1 -->
-            <div class="feature w-80 bg-transparent border-[#C6A969] border rounded-md space-y-3 mt-10">
+            <div class="feature w-80 bg-transparent border-[#C6A969] border rounded-md space-y-3 mt-10 hover:scale-110 ">
             <img src="storage/image1.png" class="w-full h-64 object-cover rounded-t-md">
                 <div class="flex items-center pl-7">
                     <!-- Star 1 -->
@@ -211,8 +218,9 @@
     </section>
 
     <footer class="bg-[#F1E4C3] text-center">
-        <div class="space-y-2 py-7 border-b-4 border-[#9B978D]">
-            <h1 class="text-3xl italic font-semibold">Flavoury</h1>
+        <div class="space-y-2 py-7 border-b-4 border-[#9B978D] flex flex-col justify-center items-center">
+            <!-- <h1 class="text-3xl italic font-semibold">Flavoury</h1> -->
+            <img src="/storage/FLAVOURY.png" alt="" class="h-10">
             <p class="px-96">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur molestias facere dolores libero sit non numquam nostrum possimus rem consectetur fuga quaerat facilis nemo, totam ipsum culpa. Enim, cupiditate!</p>
         </div>
         <div class="flex items-center justify-between px-7 py-3">

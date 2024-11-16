@@ -9,6 +9,42 @@
 
 </head>
 <body class="bg-[#FFFFEC] text-black">
+    <nav class="flex justify-between px-7 py-5">
+        <div>
+            <!-- <p class="text-2xl font-bold text-black italic">Flavoury</p> -->
+            <img src="/storage/FLAVOURY.png" alt="" class="h-8">
+
+        </div>
+
+        <div class="flex space-x-6 text-[20px]">
+            <div class="flex hover:border-b-2 border-black">
+                <img src="https://img.icons8.com/?size=100&id=i6fZC6wuprSu&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
+                <a href="/" class="">Home</a>
+            </div>
+            <div class="flex hover:border-b-2 border-black">
+                <img src="https://img.icons8.com/?size=100&id=85920&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
+                <a href="/recipe" class="">Recipe</a>
+            </div>
+            <div class="flex hover:border-b-2 border-black">
+                <img src="https://img.icons8.com/?size=100&id=85080&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
+                <a href="/market" class="">Market</a>
+            </div>
+            <div class="flex hover:border-b-2 border-black">
+                <img src="https://img.icons8.com/?size=100&id=1501&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
+                <a href="/addrecipe" class="">Add</a>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <p>
+                <img src="https://img.icons8.com/?size=100&id=59878&format=png&color=000000" alt="Search Icon" class="w-9 h-9 cursor-pointer hover:opacity-80">
+            </p>
+            <div class="w-9 h-9 rounded-full overflow-hidden hover:scale-110 duration-200 cursor-pointer">
+                <img src="/storage/pasta.jpg" alt="Recipe" class="object-cover w-full h-full">
+            </div>
+        </div>
+    </nav>
+
     <div class="container mx-auto p-6 md:p-10">
 
         <h1 class="text-4xl font-bold text-center text-gray-800 mb-6">{{ $recipe->name_recipe }}</h1>
@@ -22,11 +58,24 @@
                 <strong class="text-black">Description:</strong> 
                 <p class="text-lg">{{ $recipe->descrip_recipe }}</p>
                 <strong class="text-black">Ingredient:</strong> 
-                <p class="text-lg">{{ $recipe->ingredient }}</p>
+                @php
+                    $ingredient = explode(',', $recipe->ingredient);
+                    $flowCooking = explode(',', $recipe->flow_cooking);
+                @endphp
+                <ol>
+                    @foreach ($ingredient as $i)
+                        <li class="list-disc">{{$i}}</li>
+                    @endforeach
+                </ol>
                 <strong class="text-black">Location:</strong>
                 <p class="text-lg">{{ $recipe->location }}</p>
                 <strong class="text-black">Flow Cooking:</strong>
-                <p class="text-lg"> {{ $recipe->flow_cooking }}</p>
+                <ol>
+                    @foreach ($flowCooking as $i)
+                        <li class="list-decimal">{{$i}}</li>
+                    @endforeach
+                </ol>
+                <!-- <p class="text-lg"> {{ $recipe->flow_cooking }}</p> -->
             </div>
         </div>
 

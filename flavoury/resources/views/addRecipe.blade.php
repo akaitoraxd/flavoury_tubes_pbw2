@@ -38,7 +38,7 @@
 
             <div class="">
                 <label for="ingredient" class="font-semibold text-gray-700">Ingredient:</label>
-                <textarea id="ingredient" name="ingredient" required class="w-full p-2 border-2 rounded border-[#EDA16B]"></textarea>
+                <textarea id="ingredient" name="ingredient" required class="w-full p-2 border-2 rounded border-[#EDA16B]" placeholder="Note : pisahkan bahan dengan ','"></textarea>
             </div>
 
             <div class="">
@@ -48,7 +48,7 @@
 
             <div class="">
                 <label for="flow_cooking" class="font-semibold text-gray-700">Flow Cooking:</label>
-                <textarea id="flow_cooking" name="flow_cooking" required class="w-full p-2 border-2 rounded border-[#EDA16B]"></textarea>
+                <textarea id="flow_cooking" name="flow_cooking" required class="w-full p-2 border-2 rounded border-[#EDA16B]" placeholder="Note : pisahkan bahan dengan ','"></textarea>
             </div>
 
             <div class="">
