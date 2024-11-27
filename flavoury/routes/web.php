@@ -14,10 +14,14 @@ Route::get('/test', function () {
 
 Route::get('/home', function () {
     return view('home');
-});
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/pencarian', function () {
     return view('pencarian');
+});
+
+Route::get('/feedback', function () {
+    return view('feedback');
 });
 
 Route::get('/addrecipe', [RecipeController::class, 'create'])->middleware(['auth', 'verified'])->name('addRecipe');

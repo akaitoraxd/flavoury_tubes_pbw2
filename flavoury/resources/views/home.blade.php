@@ -6,54 +6,29 @@
     <title>Flavoury Sign Up</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     @Vite('resources/css/app.css')
+    <style>
+        .book:hover .cover {
+        transform: rotateY(-80deg);/* Rotate on hover */
+    }
+    </style>
 </head>
 <body class="bg-[#FFFFEC]">
-    <nav class="flex justify-between px-7 py-5">
-        <div>
-            <!-- <p class="text-2xl font-bold text-black italic">Flavoury</p> -->
-            <img src="/storage/FLAVOURY.png" alt="" class="h-8">
+    
+    <x-navbar/>
 
-        </div>
-
-        <div class="flex space-x-6 text-[20px]">
-            <div class="flex hover:border-b-2 border-black">
-                <img src="https://img.icons8.com/?size=100&id=i6fZC6wuprSu&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
-                <a href="/" class="">Home</a>
-            </div>
-            <div class="flex hover:border-b-2 border-black">
-                <img src="https://img.icons8.com/?size=100&id=85920&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
-                <a href="/recipe" class="">Recipe</a>
-            </div>
-            <div class="flex hover:border-b-2 border-black">
-                <img src="https://img.icons8.com/?size=100&id=85080&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
-                <a href="/market" class="">Market</a>
-            </div>
-            <div class="flex hover:border-b-2 border-black">
-                <img src="https://img.icons8.com/?size=100&id=1501&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
-                <a href="/addrecipe" class="">Add</a>
-            </div>
-        </div>
-
-        <div class="flex items-center space-x-3">
-            <p>
-                <img src="https://img.icons8.com/?size=100&id=59878&format=png&color=000000" alt="Search Icon" class="w-9 h-9 cursor-pointer hover:opacity-80">
-            </p>
-            <div class="w-9 h-9 rounded-full overflow-hidden hover:scale-110 duration-200 cursor-pointer">
-                <img src="/storage/pasta.jpg" alt="Recipe" class="object-cover w-full h-full">
-            </div>
-        </div>
-    </nav>
-
-    <div class="flex h-96 mx-20 bg-[#F1E4C3] rounded-md mt-16">
-        <div class="w-1/2 h-full  overflow-hidden rounded-l-md">
+    <div class="flex flex-col md:flex-row h-auto md:h-96 mx-4 md:mx-20 bg-[#F1E4C3] rounded-md mt-8 md:mt-16">
+        <div class="w-full md:w-1/2 h-64 md:h-full overflow-hidden rounded-t-md md:rounded-l-md">
             <img src="/storage/pasta.jpg" alt="Recipe" class="object-cover w-full h-full">
         </div>
 
-        <div class="w-1/2 h-full flex flex-col p-20 space-y-4">
-            <h1 class="text-5xl font-bold">Martabak</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab placeat facilis, cum nulla ad nemo quae consequatur cumque laboriosam distinctio illum. Officiis magni consequatur voluptas exercitationem iure quaerat placeat perspiciatis.</p>
+        <div class="w-full md:w-1/2 h-auto md:h-full flex flex-col p-6 md:p-20 space-y-4 overflow-auto">
+            <h1 class="text-3xl md:text-5xl font-bold">Martabak</h1>
+            <p class="text-sm md:text-base">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab placeat facilis, cum nulla ad nemo quae consequatur cumqu Loreme Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eligendi! Saepe pariatur perferendis culpa? Sed natus, eveniet assumenda doloremque placeat commodi ad! Deleniti cum magnam sunt doloremque nostrum, facilis cupiditate? laboriosam distinctio illum. Officiis magni consequatur voluptas exercitationem iure quaerat placeat perspiciatis Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit tempore necessitatibus omnis minus est illum quaerat quasi dicta at consectetur quia, quisquam, officiis corporis nulla tenetur ducimus enim mollitia? Consectetur..
+            </p>
         </div>
     </div>
+
 
     <section class="py-12">
         <h2 class="text-3xl font-bold mb-8 ml-32">Kategori Teratas</h2>
@@ -187,28 +162,118 @@
                     <h3 class="text-lg text-gray-800 font-semibold">NASI GORENG</h3>
                 </div>
             </div>
-            
-            
+        
+        </div>
+
+        <div class="flex flex-wrap justify-center items-start gap-x-10 gap-y-7 mt-28">
+
+            <div class="book relative w-[260px] h-[350px] rounded-[15px] bg-[#fffefe] shadow-[1px_1px_12px_#000] flex items-center justify-center text-black text-center" style="perspective: 2000px;">            
+                <div class="cover absolute top-0 z-[1] w-full h-full bg-cover bg-center origin-left rounded-[15px] flex flex-col justify-end transition-transform duration-700 ease-in-out hover:transform-[rotateY(-80deg)]" style="background-image: url('/storage/images/wZyVGl52v4kV9aOaQDdGhz9YZybH6jHhZeZc4P5b.jpg');">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent rounded-[15px]"></div>
+                    <div class="relative z-10 p-4 text-right">
+                        <h1 class="text-white drop-shadow-md text-2xl font-bold">
+                            Ayam Goreng
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="absolute w-full h-full flex flex-col items-center justify-center px-4 bg-[#F1E4C3] rounded-[15px] p-6 transform rotateY-180 backface-hidden shadow-inner">
+                    <p class="w-full text-sm text-gray-800 leading-relaxed text-center overflow-hidden mb-4" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; word-wrap: break-word; overflow: hidden;">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente mollitia voluptatibus doloribus veritatis voluptas soluta minima repellat deserunt cum accusantium quibusdam harum quas ut, nihil facere blanditiis laboriosam repellendus tempora?
+                    </p>
+                    <a href="\" class="bg-transparent border-2 border-black text-black text-sm font-semibold rounded-lg px-4 py-2 hover:bg-black hover:text-white transition duration-300">
+                        View Recipe
+                    </a>
+                </div>
+
+            </div>
+            <div class="book relative w-[260px] h-[350px] rounded-[15px] bg-[#fffefe] shadow-[1px_1px_12px_#000] flex items-center justify-center text-black text-center" style="perspective: 2000px;">            
+                <div class="cover absolute top-0 z-[1] w-full h-full bg-cover bg-center origin-left rounded-[15px] flex flex-col justify-end transition-transform duration-700 ease-in-out hover:transform-[rotateY(-80deg)]" style="background-image: url('/storage/images/wZyVGl52v4kV9aOaQDdGhz9YZybH6jHhZeZc4P5b.jpg');">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent rounded-[15px]"></div>
+                    <div class="relative z-10 p-4 text-right">
+                        <h1 class="text-white drop-shadow-md text-2xl font-bold">
+                            Ayam Goreng
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="absolute w-full h-full flex flex-col items-center justify-center px-4 bg-[#F1E4C3] rounded-[15px] p-6 transform rotateY-180 backface-hidden shadow-inner">
+                    <p class="w-full text-sm text-gray-800 leading-relaxed text-center overflow-hidden mb-4" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; word-wrap: break-word; overflow: hidden;">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente mollitia voluptatibus doloribus veritatis voluptas soluta minima repellat deserunt cum accusantium quibusdam harum quas ut, nihil facere blanditiis laboriosam repellendus tempora?
+                    </p>
+                    <a href="\" class="bg-transparent border-2 border-black text-black text-sm font-semibold rounded-lg px-4 py-2 hover:bg-black hover:text-white transition duration-300">
+                        View Recipe
+                    </a>
+                </div>
+
+            </div>
+            <div class="book relative w-[260px] h-[350px] rounded-[15px] bg-[#fffefe] shadow-[1px_1px_12px_#000] flex items-center justify-center text-black text-center" style="perspective: 2000px;">            
+                <div class="cover absolute top-0 z-[1] w-full h-full bg-cover bg-center origin-left rounded-[15px] flex flex-col justify-end transition-transform duration-700 ease-in-out hover:transform-[rotateY(-80deg)]" style="background-image: url('/storage/images/wZyVGl52v4kV9aOaQDdGhz9YZybH6jHhZeZc4P5b.jpg');">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent rounded-[15px]"></div>
+                    <div class="relative z-10 p-4 text-right">
+                        <h1 class="text-white drop-shadow-md text-2xl font-bold">
+                            Ayam Goreng
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="absolute w-full h-full flex flex-col items-center justify-center px-4 bg-[#F1E4C3] rounded-[15px] p-6 transform rotateY-180 backface-hidden shadow-inner">
+                    <p class="w-full text-sm text-gray-800 leading-relaxed text-center overflow-hidden mb-4" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; word-wrap: break-word; overflow: hidden;">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente mollitia voluptatibus doloribus veritatis voluptas soluta minima repellat deserunt cum accusantium quibusdam harum quas ut, nihil facere blanditiis laboriosam repellendus tempora?
+                    </p>
+                    <a href="\" class="bg-transparent border-2 border-black text-black text-sm font-semibold rounded-lg px-4 py-2 hover:bg-black hover:text-white transition duration-300">
+                        View Recipe
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="book relative w-[260px] h-[350px] rounded-[15px] bg-[#fffefe] shadow-[1px_1px_12px_#000] flex items-center justify-center text-black text-center" style="perspective: 2000px;">            
+                <div class="cover absolute top-0 z-[1] w-full h-full bg-cover bg-center origin-left rounded-[15px] flex flex-col justify-end transition-transform duration-700 ease-in-out hover:transform-[rotateY(-80deg)]" style="background-image: url('/storage/images/wZyVGl52v4kV9aOaQDdGhz9YZybH6jHhZeZc4P5b.jpg');">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent rounded-[15px]"></div>
+                    <div class="relative z-10 p-4 text-right">
+                        <h1 class="text-white drop-shadow-md text-2xl font-bold">
+                            Ayam Goreng
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="absolute w-full h-full flex flex-col items-center justify-center px-4 bg-[#F1E4C3] rounded-[15px] p-6 transform rotateY-180 backface-hidden shadow-inner">
+                    <p class="w-full text-sm text-gray-800 leading-relaxed text-center overflow-hidden mb-4" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; word-wrap: break-word; overflow: hidden;">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente mollitia voluptatibus doloribus veritatis voluptas soluta minima repellat deserunt cum accusantium quibusdam harum quas ut, nihil facere blanditiis laboriosam repellendus tempora?
+                    </p>
+                    <a href="\" class="bg-transparent border-2 border-black text-black text-sm font-semibold rounded-lg px-4 py-2 hover:bg-black hover:text-white transition duration-300">
+                        View Recipe
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="book relative w-[260px] h-[350px] rounded-[15px] bg-[#fffefe] shadow-[1px_1px_12px_#000] flex items-center justify-center text-black text-center" style="perspective: 2000px;">            
+                <div class="cover absolute top-0 z-[1] w-full h-full bg-cover bg-center origin-left rounded-[15px] flex flex-col justify-end transition-transform duration-700 ease-in-out hover:transform-[rotateY(-80deg)]" style="background-image: url('/storage/images/wZyVGl52v4kV9aOaQDdGhz9YZybH6jHhZeZc4P5b.jpg');">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent rounded-[15px]"></div>
+                    <div class="relative z-10 p-4 text-right">
+                        <h1 class="text-white drop-shadow-md text-2xl font-bold">
+                            Ayam Goreng
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="absolute w-full h-full flex flex-col items-center justify-center px-4 bg-[#F1E4C3] rounded-[15px] p-6 transform rotateY-180 backface-hidden shadow-inner">
+                    <p class="w-full text-sm text-gray-800 leading-relaxed text-center overflow-hidden mb-4" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; word-wrap: break-word; overflow: hidden;">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente mollitia voluptatibus doloribus veritatis voluptas soluta minima repellat deserunt cum accusantium quibusdam harum quas ut, nihil facere blanditiis laboriosam repellendus tempora?
+                    </p>
+                    <a href="\" class="bg-transparent border-2 border-black text-black text-sm font-semibold rounded-lg px-4 py-2 hover:bg-black hover:text-white transition duration-300">
+                        View Recipe
+                    </a>
+                </div>
+
+            </div>
+
         </div>
     </section>
 
-    <footer class="bg-[#F1E4C3] text-center">
-        <div class="space-y-2 py-7 border-b-4 border-[#9B978D] flex flex-col justify-center items-center">
-            <!-- <h1 class="text-3xl italic font-semibold">Flavoury</h1> -->
-            <img src="/storage/FLAVOURY.png" alt="" class="h-10">
-            <p class="px-96">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur molestias facere dolores libero sit non numquam nostrum possimus rem consectetur fuga quaerat facilis nemo, totam ipsum culpa. Enim, cupiditate!</p>
-        </div>
-        <div class="flex items-center justify-between px-7 py-3">
-            <div>
-                <p>&copy;2024 Flavoury - All right reserved</p>
-            </div>
-            <div class="flex justify-center space-x-7">
-                <img src="https://img.icons8.com/?size=100&id=62225&format=png&color=000000"  alt="fb" class="w-5 h-5">
-                <img src="https://img.icons8.com/?size=100&id=437&format=png&color=000000"  alt="x" class="w-5 h-5">
-                <img src="https://img.icons8.com/?size=100&id=32292&format=png&color=000000"  alt="ig" class="w-5 h-5">
-            </div>
-        </div>
-    </footer>
+    <x-footer/>
     
 </body>
 </html>
