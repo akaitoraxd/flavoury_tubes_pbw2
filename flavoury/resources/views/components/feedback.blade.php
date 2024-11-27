@@ -1,5 +1,5 @@
 <!-- Feedback Button -->
-<button id="feedbackButton" class="fixed right-4 bottom-4 p-3 rounded-full bg-[#a98e56] cursor-pointer z-50">
+<button id="feedbackButton" class="fixed right-4 bottom-4 p-3 rounded-full bg-[#C6A969] cursor-pointer z-50">
     <img src="https://img.icons8.com/?size=100&id=118377&format=png&color=000000" class="w-10" alt="Feedback">
 </button>
 

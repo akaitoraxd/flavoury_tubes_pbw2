@@ -7,7 +7,7 @@
         <div class="hidden lg:flex md:flex space-x-6 text-[20px]">
             <div class="flex hover:border-b-2 border-black items-center">
                 <img src="https://img.icons8.com/?size=100&id=i6fZC6wuprSu&format=png&color=000000" alt="Search Icon" class="w-6 h-6 cursor-pointer hover:opacity-80">
-                <p href="/home" class="">Home</p>
+                <a href="/home" class="">Home</a>
             </div>
             <div class="flex hover:border-b-2 border-black items-center">
                 <img src="https://img.icons8.com/?size=100&id=85920&format=png&color=000000" alt="Search Icon" class="w-6 h-6 cursor-pointer hover:opacity-80">

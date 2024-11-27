@@ -23,8 +23,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="h-screen flex flex-col lg:flex-row items-center justify-between px-10 lg:px-20 relative">
-        <div class="lg:w-1/2 text-start z-10 space-y-6">
+    <section class="h-screen flex flex-col lg:flex-row items-center justify-between px-10 lg:px-20 relative ">
+        <div class="lg:w-1/2 text-start z-10 space-y-6 md:my-auto my-auto">
             <h1 class="text-6xl lg:text-7xl font-bold text-gray-800 leading-tight">
                 Discover Culinary Delights
             </h1>
@@ -32,19 +32,18 @@
                 Let Flavoury guide you through a journey of taste and passion. Explore unforgettable recipes and indulge
                 in the art of cooking.
             </p>
-            <button
-                class="mt-6 bg-[#C6A969] text-white py-3 px-8 rounded-md hover:bg-[#B89054] hover:shadow-lg shadow-lg transition-all duration-300">
+            <button onclick="location.href='#isi'" class="mt-6 bg-[#C6A969] text-white py-3 px-8 rounded-md hover:bg-[#B89054] hover:shadow-lg shadow-lg transition-all duration-300">
                 Get Started
             </button>
         </div>
-        <div class="lg:w-1/2 flex justify-center lg:justify-end z-10">
+        <div class="lg:w-1/2 lg:relative absolute sm:z-10 flex justify-center lg:justify-end z-0 md:my-auto my-auto">
             <img src="/storage/first.png" alt="Decorative Background"
-                class="max-w-full h-[80vh] object-contain opacity-90">
+                class="max-w-full h-[80vh] object-contain opacity-10 lg:opacity-100 ">
         </div>
     </section>
 
     <!-- Why Flavoury Section -->
-    <section class="h-[100vh] flex items-center justify-start px-6">
+    <section id="isi" class="h-[100vh] flex items-center justify-start px-6">
         <div class="w-1/2">
             <h2 class="text-4xl font-semibold text-gray-800 mb-6 border-b-4 border-[#C6A969] pb-2">
                 Why Flavoury?
@@ -120,7 +119,7 @@
         <p class="text-lg mb-8">
             Discover new recipes, share your own, and connect with fellow food lovers.
         </p>
-        <a href="/signup"
+        <a href="/register"
             class="bg-white text-[#C6A969] py-3 px-6 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300">
             Get Started Now
         </a>
