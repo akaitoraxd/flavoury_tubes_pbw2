@@ -9,7 +9,7 @@
 
 </head>
 <body class="bg-gray-100">
-    <a href="/dashboard" class="p-10">Home</a>
+    <a href="/home" class="p-10">Home</a>
 
     <section class="flex flex-col justify-center items-center min-h-screen">
         <div class="flex flex-col justify-center items-center text-center mb-8">

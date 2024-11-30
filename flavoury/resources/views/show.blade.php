@@ -53,8 +53,8 @@
             <div class="flex flex-col sm:flex-row space-x-7">
 
                 <div class="flex space-x-2">
-                    <img src="/storage/cooking.jpg" alt="" class="h-7 w-7 rounded-full object-cover">
-                    <p class="font-semibold">Spongebob</p>
+                    <img src="{{ asset('storage/images/' . auth()->user()->image) }}" alt="" class="h-7 w-7 rounded-full object-cover">
+                    <p class="font-semibold">{{auth()->user()->name}}</p>
                 </div>
     
                 <div>

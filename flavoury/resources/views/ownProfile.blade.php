@@ -6,17 +6,6 @@
     <title>Flavoury</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     @Vite('resources/css/app.css')
-    <style>
-  
-
-    .book:hover .cover {
-        transform: rotateY(-80deg);/* Rotate on hover */
-    }
-
-    .content {
-        
-    }
-</style>
 
 </head>
 <body class="bg-[#FFFFEC]">
@@ -29,7 +18,7 @@
         </div>
 
         <div>
-            <p class="font-semibold text-xl">Username</p>
+            <p class="font-semibold text-xl">{{$user->name}}</p>
         </div>
 
         <div>

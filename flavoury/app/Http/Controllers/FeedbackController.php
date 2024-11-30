@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 use App\Models\feedback;
 use App\Http\Requests\StorefeedbackRequest;
@@ -27,10 +28,23 @@ class FeedbackController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorefeedbackRequest $request)
+    public function store(Request $request)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'feedback' => 'required|string|max:500',
+        ]);
+
+        Feedback::create([
+            'id_user' => auth()->id(),
+            'feedback' => $request->input('feedback'),
+            'date' => now(),  
+        ]);
+
+        // Kembali ke halaman sebelumnya dengan pesan sukses
+        return redirect()->back()->with('success', 'Feedback submitted successfully!');
     }
+
 
     /**
      * Display the specified resource.

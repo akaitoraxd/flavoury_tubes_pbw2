@@ -89,7 +89,7 @@
     </section>
 
     <!-- Testimonial Section -->
-    <section class="py-16 px-6 lg:px-20 bg-[#F9F5EC]">
+    <!-- <section class="py-16 px-6 lg:px-20 bg-[#F9F5EC]">
         <div class="text-center mb-12">
             <h2 class="text-4xl font-semibold text-gray-800 mb-4">What Our Users Say</h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -111,7 +111,7 @@
                 <h4 class="text-lg font-semibold text-gray-800">- John Smith</h4>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Call to Action Section -->
     <section class="bg-[#C6A969] py-16 text-center text-white">

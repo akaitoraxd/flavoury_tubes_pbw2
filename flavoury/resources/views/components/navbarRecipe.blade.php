@@ -1,29 +1,31 @@
 <nav class="flex justify-between px-7 py-5">
-    <div class="hidden lg:flex md:flex">
-        <img src="/storage/FLAVOURY.png" alt="" class="h-8">
-    </div>
+
+    <a href="/pencarian">
+        <img src="https://img.icons8.com/?size=100&id=59878&format=png&color=000000" alt="Search Icon"
+            class="w-9 h-9 cursor-pointer hover:opacity-80">
+    </a>
 
     <div class="hidden lg:flex md:flex space-x-6 text-[20px]">
-        <a href="/home" class="flex hover:border-b-2 border-black items-center">
+        <div class="flex hover:border-b-2 border-black items-center">
             <img src="https://img.icons8.com/?size=100&id=i6fZC6wuprSu&format=png&color=000000" alt="Search Icon"
                 class="w-6 h-6 cursor-pointer hover:opacity-80">
-            <p class="">Home</p>
-        </a>
-        <a href="/recipe" class="flex hover:border-b-2 border-black items-center">
+            <a href="/home" class="">Home</a>
+        </div>
+        <div class="flex hover:border-b-2 border-black items-center">
             <img src="https://img.icons8.com/?size=100&id=85920&format=png&color=000000" alt="Search Icon"
                 class="w-6 h-6 cursor-pointer hover:opacity-80">
-            <p class="">Recipe</p>
-        </a>
-        <a href="/market" class="flex hover:border-b-2 border-black items-center">
+            <a href="/recipe" class="">Recipe</a>
+        </div>
+        <div class="flex hover:border-b-2 border-black items-center">
             <img src="https://img.icons8.com/?size=100&id=85080&format=png&color=000000" alt="Search Icon"
                 class="w-6 h-6 cursor-pointer hover:opacity-80">
-            <p class="">Market</p>
-        </a>
-        <a href="/addrecipe" class="flex hover:border-b-2 border-black items-center">
+            <a href="/market" class="">Market</a>
+        </div>
+        <div class="flex hover:border-b-2 border-black items-center">
             <img src="https://img.icons8.com/?size=100&id=1501&format=png&color=000000" alt="Search Icon"
                 class="w-6 h-6 cursor-pointer hover:opacity-80">
-            <p class="">Add</p>
-        </a>
+            <a href="/addrecipe" class="">Add</a>
+        </div>
     </div>
 
     <!-- mobile -->
@@ -65,10 +67,7 @@
 
     <div class="flex items-center">
         <div class="flex items-center space-x-3">
-            <a href="/pencarian">
-                <img src="https://img.icons8.com/?size=100&id=59878&format=png&color=000000" alt="Search Icon"
-                    class="w-9 h-9 cursor-pointer hover:opacity-80">
-            </a>
+
             <details class="group">
                 <summary
                     class="w-9 h-9 rounded-full overflow-hidden hover:scale-110 hover:shadow-lg transition duration-200 cursor-pointer list-none">

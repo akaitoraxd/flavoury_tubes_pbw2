@@ -6,6 +6,7 @@ use App\Models\Recipe;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class RecipeController extends Controller
 {
@@ -14,8 +15,14 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        
+        $random1 = Recipe::inRandomOrder()->take(1)->get();
+        $top3 = Recipe::orderBy('rating', 'desc')->take(3)->get();
+        $random5 = Recipe::inRandomOrder()->take(5)->get();
+        $newRecipe = Recipe::orderBy('created_at', 'desc')->take(6)->get();
+
+        return view('home', compact('random5', 'top3', 'newRecipe', 'random1'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -58,7 +65,10 @@ class RecipeController extends Controller
     public function showOwnRecipe()
     {
         $recipes = Recipe::where('id_user', auth()->id())->get();
-        return view('test', compact('recipes'));
+        $user = User::find(auth()->id()); // Ambil data user berdasarkan ID pengguna yang sedang login
+
+
+        return view('ownProfile', compact('recipes', 'user'));
     }
 
     public function show($id)
@@ -68,8 +78,14 @@ class RecipeController extends Controller
         if ($recipe->id_user !== auth()->id()) {
             return redirect()->route('showOwnRecipe');
         }
-    
+
         return view('show', compact('recipe'));
+    }
+
+    public function showRecipes($id)
+    {
+        $recipe = Recipe::where('id_recipe', $id)->firstOrFail();
+        return view('showRecipe', compact('recipe'));
     }
 
     /**
@@ -77,7 +93,7 @@ class RecipeController extends Controller
      */
     public function getImage($filename)
     {
-        
+
     }
 
 
@@ -87,7 +103,7 @@ class RecipeController extends Controller
      */
     // public function edit(Recipe $recipe)
     // {
-        
+
     // }
 
     public function edit($id)
@@ -101,7 +117,7 @@ class RecipeController extends Controller
      */
     // public function update(Request $request, Recipe $recipe)
     // {
-        
+
     // }
 
     public function update(Request $request, $id)
@@ -115,12 +131,12 @@ class RecipeController extends Controller
             'ingredient' => 'required|string',
             'location' => 'required|string|max:255',
             'flow_cooking' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        
+
         if ($request->hasFile('image')) {
-            
+
             if ($recipe->image && Storage::disk('public')->exists('images/' . $recipe->image)) {
                 Storage::disk('public')->delete('images/' . $recipe->image);
             }
@@ -134,6 +150,15 @@ class RecipeController extends Controller
         $recipe->update($validatedData);
 
         return redirect()->route('recipe.show', $recipe->id_recipe)->with('success', 'Recipe updated successfully!');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $recipes = Recipe::where('name_recipe', 'like', '%' . $search . '%')->get();
+
+        return view('pencarian', compact('recipes'));
     }
 
 
