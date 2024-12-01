@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Collection;
 
 class RecipeController extends Controller
 {
@@ -21,6 +24,15 @@ class RecipeController extends Controller
         $newRecipe = Recipe::orderBy('created_at', 'desc')->take(6)->get();
 
         return view('home', compact('random5', 'top3', 'newRecipe', 'random1'));
+    }
+
+    public function allRecipe()
+    {
+        $allRecipes = Recipe::all();
+        $top3 = Recipe::orderBy('rating', 'desc')->take(3)->get();
+        $new5 = Recipe::orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('recipe', compact('allRecipes', 'top3', 'new5'));
     }
 
 
@@ -65,10 +77,13 @@ class RecipeController extends Controller
     public function showOwnRecipe()
     {
         $recipes = Recipe::where('id_user', auth()->id())->get();
-        $user = User::find(auth()->id()); // Ambil data user berdasarkan ID pengguna yang sedang login
-
-
-        return view('ownProfile', compact('recipes', 'user'));
+        $user = User::find(auth()->id()); 
+        $saved = Recipe::whereIn('id_recipe', function ($query) {
+            $query->select('id_recipe')
+                  ->from('collections')
+                  ->where('id_user', auth()->id());
+        })->get();
+        return view('ownProfile', compact('recipes', 'user', 'saved'));
     }
 
     public function show($id)
@@ -84,8 +99,36 @@ class RecipeController extends Controller
 
     public function showRecipes($id)
     {
-        $recipe = Recipe::where('id_recipe', $id)->firstOrFail();
-        return view('showRecipe', compact('recipe'));
+        {
+            // Ambil data resep berdasarkan ID
+            $recipe = DB::table('recipes')
+                ->where('id_recipe', $id)
+                ->first();
+    
+            if (!$recipe) {
+                abort(404);
+            }
+    
+            // Ambil data pengguna yang membuat resep
+            $user = DB::table('users')
+                ->where('id', $recipe->id_user)
+                ->first();
+    
+            // Ambil komentar terkait dengan join ke tabel users
+            $comments = DB::table('comments')
+                ->join('users', 'comments.id_user', '=', 'users.id')
+                ->where('comments.id_recipe', $id)
+                ->select('comments.*', 'users.name', 'users.image')
+                ->get();
+    
+            // Cek apakah resep sudah dikoleksi oleh pengguna saat ini
+            $isCollected = Collection::where('id_recipe', $id)
+                ->where('id_user', Auth::id())
+                ->exists();
+    
+            // Kirim data ke view
+            return view('showRecipe', compact('recipe', 'user', 'comments', 'isCollected'));
+        }
     }
 
     /**
@@ -181,5 +224,14 @@ class RecipeController extends Controller
 
         return redirect()->route('showOwnRecipe')->with('success', 'Recipe deleted successfully!');
     }
+
+    public function displayRecipe($id)
+    {
+        $recipe = Recipe::where('id_recipe', $id)->firstOrFail();
+        $comments = $recipe->comments()->latest()->get(); // Ambil komentar berdasarkan resep
+
+        return view('showRecipe', compact('recipe', 'comments'));
+    }
+
 
 }

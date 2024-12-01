@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id("id_comment");
-            $table->integer("id_cate");
+            $table->unsignedBigInteger("id_recipe"); 
+            $table->unsignedBigInteger("id_user"); 
             $table->text("comment");
-            $table->timestamp("date");
+            $table->integer("rating")->default(0);    // Rating
+            $table->timestamp("date")->useCurrent();
             $table->timestamps();
         });
     }

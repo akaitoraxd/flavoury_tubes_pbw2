@@ -4,18 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <title>{{ $recipe->name_recipe }}</title>
     @Vite('resources/css/app.css')
 
 </head>
-
-<script>
-    function onSubmitTest(form) {
-        event.preventDefault();
-        console.log($(form).serializeArray());
-    }
-</script>
 
 <body class="bg-[#FFFFEC] text-black">
 
@@ -24,64 +16,76 @@
 
         <h1 class="text-5xl font-bold text-start text-gray-800 mb-6">{{ $recipe->name_recipe }}</h1>
 
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
             <div class="flex flex-col sm:flex-row space-x-7">
 
                 <div class="flex space-x-2">
-                    <img src="{{ asset('storage/images/' . auth()->user()->image) }}" alt=""
+                    <img src="{{ asset('storage/images/' . $user->image) }}" alt="Profile"
                         class="h-7 w-7 rounded-full object-cover">
-                    <p class="font-semibold">{{auth()->user()->name}}</p>
+                    <p class="font-semibold">{{ $user->name }}</p>
                 </div>
 
                 <div>
-                    <p class="font-semibold">Location : {{ $recipe->location }}</p>
+                    <p class="font-semibold">Location: {{ $recipe->location }}</p>
                 </div>
 
                 <div class="flex items-center">
-                    <!-- Star 1 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 2 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 3 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 4 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 5 -->
-                    <svg class="w-6 h-6 text-gray-300" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <svg class="w-6 h-6 {{ $i <= $recipe->rating ? 'text-yellow-400' : 'text-gray-300' }}"
+                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
+                        </svg>
+                    @endfor
                 </div>
+
+            </div>
+
+            <div class="flex gap-x-1">
+                <form action="{{ route('collections.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_recipe" value="{{ $recipe->id_recipe }}">
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">
+                        Save Recipe
+                    </button>
+                </form>
+                <form action="{{ route('collections.destroy', $recipe->id_recipe) }}" method="POST"
+                    onsubmit="return confirm('Are you sure you want to remove this recipe from your collection?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
+                        Remove from Collection
+                    </button>
+                </form>
+                @if(session('success'))
+                    <div class="absolute righ-1 top-36">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
             </div>
 
         </div>
 
+
         <hr class="border-black my-7">
 
-        <p class="text-xl my-7">{{ $recipe->descrip_recipe }}</p>
+        <p class="text-xl my-7 break-words">{{ $recipe->descrip_recipe }}</p>
 
 
         <div class="flex justify-center mb-8">
             <img src="{{ asset('storage/images/' . $recipe->image) }}" alt="{{ $recipe->name_recipe }}"
                 class="w-full h-[650px] object-cover rounded-lg shadow-md border-2 border-gray-200">
         </div>
+
+        @if ($user->phone_number != 0)
+            <p class="font-medium text-gray-800 text-lg md:text-xl flex items-center space-x-2">
+                <span>Klik untuk info private class:</span>
+                <a href="https://wa.me/{{$user->phone_number}}" target="_blank"
+                    class="text-[#eec04b] hover:text-[#3b3830] font-semibold flex items-center space-x-1">
+                    <span>{{$user->phone_number}}</span>
+                </a>
+        </p> @endif
 
         @php
             $ingredient = explode(',', $recipe->ingredient);
@@ -112,94 +116,56 @@
         <h1 class="text-5xl font-semibold pt-5 border-t-8 border-black">Already made this?</h1>
         <p class="text-3xl">Share your coment?</p>
 
-        <form action="" onsubmit="onSubmitTest(this);" class="w-full mx-auto p-6 rounded-lg shadow-md">
+        <form action="{{ route('comment.store') }}" method="POST" class="w-full mx-auto p-6 rounded-lg shadow-md">
+            @csrf
             <h2 class="text-2xl font-bold text-center mb-6">Beri Rating & Komentar</h2>
 
-            <!-- Input Komentar -->
+            <input type="hidden" name="id_recipe" value="{{ $recipe->id_recipe }}">
+
             <div class="mb-4">
                 <label for="comment" class="block text-gray-700 font-medium mb-2">Komentar</label>
                 <textarea id="comment" name="comment" rows="2"
                     class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Tulis komentar anda..."></textarea>
+                    placeholder="Tulis komentar anda..." required></textarea>
             </div>
 
-            <!-- Input Rating -->
             <div class="mb-6">
                 <label class="block text-gray-700 font-medium mb-2">Rating</label>
                 <div class="flex space-x-2 text-2xl">
-                    <!-- Bintang 1 -->
-                    <span class="cursor-pointer text-gray-300 hover:text-yellow-400" data-rating="1">★</span>
-                    <!-- Bintang 2 -->
-                    <span class="cursor-pointer text-gray-300 hover:text-yellow-400" data-rating="2">★</span>
-                    <!-- Bintang 3 -->
-                    <span class="cursor-pointer text-gray-300 hover:text-yellow-400" data-rating="3">★</span>
-                    <!-- Bintang 4 -->
-                    <span class="cursor-pointer text-gray-300 hover:text-yellow-400" data-rating="4">★</span>
-                    <!-- Bintang 5 -->
-                    <span class="cursor-pointer text-gray-300 hover:text-yellow-400" data-rating="5">★</span>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <span class="cursor-pointer text-gray-300 hover:text-yellow-400" data-rating="{{ $i }}">★</span>
+                    @endfor
                 </div>
-                <!-- Input tersembunyi untuk nilai rating -->
                 <input type="hidden" id="rating" name="rating" value="0">
             </div>
 
-            <!-- Submit Button -->
             <button type="submit"
                 class="w-full bg-[#C6A969] text-white py-3 rounded-md hover:bg-[#B89054] focus:outline-none focus:ring-2 focus:ring-blue-500">Kirim</button>
         </form>
 
+        <!-- commentar pengguna -->
         <div class="w-full mx-auto mt-6 p-6 ">
             <h3 class="text-3xl font-bold mb-4">Komentar Pengguna</h3>
 
-            <div class="border-b pb-4 mb-4">
-                <div class="flex space-x-2">
-                    <img src="{{ asset('storage/images/' . $recipe->image) }}" alt="Profile" class="w-7 h-7 rounded-full object-cover inline-block">
-                    <p class="font-semibold">John Doe</p>
-                </div>
-                <div class="flex space-x-1 text-yellow-400 text-lg">
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-gray-300">★</span>
-                </div>
-                <p class="text-gray-700 mt-2">Makanan enak banget! Pelayanannya cepat dan ramah. Pasti akan kembali
-                    lagi.</p>
-            </div>
+            @foreach ($comments as $comment)
+                <div class="border-b pb-4 mb-4">
+                    <div class="flex space-x-2">
+                        <img src="{{ asset('storage/images/' . $comment->image) }}" alt="Profile"
+                            class="w-7 h-7 rounded-full object-cover inline-block">
+                        <p class="font-semibold">{{ $comment->name }}</p>
+                    </div>
 
-            <div class="border-b pb-4 mb-4">
-                <div class="flex space-x-2">
-                    <img src="{{ asset('storage/images/' . $recipe->image) }}" alt="Profile" class="w-7 h-7 rounded-full object-cover inline-block">
-                    <p class="font-semibold">John Doe</p>
-                </div>
+                    <div class="flex space-x-1 text-yellow-400 text-lg">
+                        @for ($i = 1; $i <= 5; $i++)
+                            <span class="{{ $i <= $comment->rating ? 'text-yellow-400' : 'text-gray-300' }}">★</span>
+                        @endfor
+                    </div>
 
-                <div class="flex space-x-1 text-yellow-400 text-lg">
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-gray-300">★</span>
-                    <span class="text-gray-300">★</span>
+                    <p class="text-gray-700 mt-2">{{ $comment->comment }}</p>
                 </div>
-                <p class="text-gray-700 mt-2">Cukup baik, tapi ada beberapa aspek yang perlu ditingkatkan, seperti
-                    kecepatan layanan.</p>
-            </div>
-
-            <div class="border-b pb-4 mb-4">
-                <div class="flex space-x-2">
-                    <img src="{{ asset('storage/images/' . $recipe->image) }}" alt="Profile" class="w-7 h-7 rounded-full object-cover inline-block">
-                    <p class="font-semibold">John Doe</p>
-                </div>
-
-                <div class="flex space-x-1 text-yellow-400 text-lg">
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-yellow-400">★</span>
-                    <span class="text-yellow-400">★</span>
-                </div>
-                <p class="text-gray-700 mt-2">Sangat memuaskan! Layanan cepat dan produk sangat berkualitas.</p>
-            </div>
-
+            @endforeach
         </div>
+
 
     </div>
     <script>
@@ -249,6 +215,7 @@
             });
         }
     </script>
+
 </body>
 
 </html>

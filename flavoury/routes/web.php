@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CollectionController;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -17,10 +19,10 @@ Route::get('/recipe', function () {
     return view('recipe');  
 });
 
-// Route::get('/showRecipe', function () {
-//     return view('showRecipe');
-// });
-Route::get('/showRecipe/{id}', [RecipeController::class, 'showRecipes'])->name('showRecipe');
+Route::get('/showRecipe/{id}', [RecipeController::class, 'showRecipes'])->name('showRecipe')->middleware(['auth', 'verified']);
+Route::post('/comment', [CommentController::class, 'store'])->name('comment.store')->middleware(['auth', 'verified']);
+Route::post('/showRecipe', [CollectionController::class, 'store'])->name('collections.store');
+Route::delete('/showRecipe/{id}', [CollectionController::class, 'destroy'])->name('collections.destroy');
 
 Route::get('/pencarian', function () {
     // max 2
@@ -40,6 +42,7 @@ Route::get('/pencarian', function () {
 
 
 Route::get('/home' , [RecipeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/recipe' , [RecipeController::class, 'allRecipe'])->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/feedback', function () {
     return view('feedback');
@@ -53,6 +56,7 @@ Route::get('/ownRecipe/{id}', [RecipeController::class, 'show'])->middleware(['a
 Route::delete('/recipe/{id}', [RecipeController::class, 'destroy'])->middleware(['auth', 'verified'])->name('recipe.destroy');
 Route::get('/recipe/{id}/edit', [RecipeController::class, 'edit'])->middleware(['auth', 'verified'])->name('recipe.edit');
 Route::patch('/recipe/{id}', [RecipeController::class, 'update'])->middleware(['auth', 'verified'])->name('recipe.update');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

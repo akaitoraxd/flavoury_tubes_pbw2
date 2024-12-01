@@ -8,8 +8,13 @@
     @Vite('resources/css/app.css')
 
 </head>
-<body class="bg-gray-100">
-    <a href="/home" class="p-10">Home</a>
+<body class="bg-[#FFFFEC]">
+    <div class="ml-10 mt-10">
+        <a href="/home"
+            class="bg-[#C6A969] text-black py-2 px-6 rounded-md border border-black hover:bg-[#B89054] hover:shadow-lg shadow-[4px_4px_0px_rgba(105,63,35,0.7)] transition-all duration-300">
+            Back to Home
+        </a>
+    </div>
 
     <section class="flex flex-col justify-center items-center min-h-screen">
         <div class="flex flex-col justify-center items-center text-center mb-8">

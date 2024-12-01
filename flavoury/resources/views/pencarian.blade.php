@@ -21,10 +21,10 @@
 
     </div>
 
-    <section class="py-12 mb-10">
+    <section class="py-12 mb-10 min-h-96">
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8 justify-center items-center">
             @foreach($pencarian as $recipe)
-                <a href="" class="flex flex-col items-center">
+                <a href="{{ route('showRecipe', $recipe->id_recipe) }}" class="flex flex-col items-center">
                     <div class="w-56 h-56 rounded-full overflow-hidden hover:scale-110 duration-200">
                         <img src="{{ asset('storage/images/' . $recipe->image) }}" alt="{{ $recipe->name_recipe }}"
                             class="object-cover w-full h-full">
