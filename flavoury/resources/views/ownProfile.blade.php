@@ -16,7 +16,7 @@
 
     <div class="flex flex-col justify-center items-center text-center space-y-7 mt-16 border-b-2 border-[#b8b8b8] pb-7">
         <div class="w-48 h-48 rounded-full overflow-hidden hover:scale-110 duration-200">
-            <img src="/storage/pasta.jpg" alt="Recipe" class="object-cover w-full h-full">
+            <img src="{{ asset('storage/images/' . $user->image) }}" alt="Recipe" class="object-cover w-full h-full">
         </div>
 
         <div>
