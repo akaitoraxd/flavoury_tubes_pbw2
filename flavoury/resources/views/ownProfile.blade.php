@@ -89,7 +89,7 @@
         @else
             <div class="flex flex-wrap gap-1 justify-center overflow-hidden">
                 @foreach ($saved as $recipe)
-                    <a href="{{ route('recipe.show', $recipe->id_recipe) }}"
+                    <a href="{{ route('showRecipe', $recipe->id_recipe) }}"
                         class="group relative w-[100px] h-[100px] sm:w-[250px] sm:h-[250px] bg-white rounded-lg shadow-md hover:shadow-lg duration-300">
                         <img src="{{ asset('storage/images/' . $recipe->image) }}" alt="{{ $recipe->name_recipe }}"
                             class="w-full h-[85%] object-cover rounded-t-lg">
