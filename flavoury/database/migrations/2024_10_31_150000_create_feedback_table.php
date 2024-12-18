@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id("id_feedback");
             $table->unsignedBigInteger("id_user");
             $table->text("feedback");
+            $table->integer("rating");
             $table->timestamp("date");
             $table->timestamps();
 

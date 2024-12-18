@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Collection;
 
 class RecipeController extends Controller
 {
@@ -14,8 +18,23 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        
+        $random1 = Recipe::inRandomOrder()->take(1)->get();
+        $top3 = Recipe::orderBy('rating', 'desc')->take(3)->get();
+        $random5 = Recipe::inRandomOrder()->take(5)->get();
+        $newRecipe = Recipe::orderBy('created_at', 'desc')->take(6)->get();
+
+        return view('home', compact('random5', 'top3', 'newRecipe', 'random1'));
     }
+
+    public function allRecipe()
+    {
+        $allRecipes = Recipe::all();
+        $top3 = Recipe::orderBy('rating', 'desc')->take(3)->get();
+        $new5 = Recipe::orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('recipe', compact('allRecipes', 'top3', 'new5'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -58,7 +77,13 @@ class RecipeController extends Controller
     public function showOwnRecipe()
     {
         $recipes = Recipe::where('id_user', auth()->id())->get();
-        return view('test', compact('recipes'));
+        $user = User::find(auth()->id()); 
+        $saved = Recipe::whereIn('id_recipe', function ($query) {
+            $query->select('id_recipe')
+                  ->from('collections')
+                  ->where('id_user', auth()->id());
+        })->get();
+        return view('ownProfile', compact('recipes', 'user', 'saved'));
     }
 
     public function show($id)
@@ -68,8 +93,42 @@ class RecipeController extends Controller
         if ($recipe->id_user !== auth()->id()) {
             return redirect()->route('showOwnRecipe');
         }
-    
+
         return view('show', compact('recipe'));
+    }
+
+    public function showRecipes($id)
+    {
+        {
+            // Ambil data resep berdasarkan ID
+            $recipe = DB::table('recipes')
+                ->where('id_recipe', $id)
+                ->first();
+    
+            if (!$recipe) {
+                abort(404);
+            }
+    
+            // Ambil data pengguna yang membuat resep
+            $user = DB::table('users')
+                ->where('id', $recipe->id_user)
+                ->first();
+    
+            // Ambil komentar terkait dengan join ke tabel users
+            $comments = DB::table('comments')
+                ->join('users', 'comments.id_user', '=', 'users.id')
+                ->where('comments.id_recipe', $id)
+                ->select('comments.*', 'users.name', 'users.image')
+                ->get();
+    
+            // Cek apakah resep sudah dikoleksi oleh pengguna saat ini
+            $isCollected = Collection::where('id_recipe', $id)
+                ->where('id_user', Auth::id())
+                ->exists();
+    
+            // Kirim data ke view
+            return view('showRecipe', compact('recipe', 'user', 'comments', 'isCollected'));
+        }
     }
 
     /**
@@ -77,7 +136,7 @@ class RecipeController extends Controller
      */
     public function getImage($filename)
     {
-        
+
     }
 
 
@@ -87,7 +146,7 @@ class RecipeController extends Controller
      */
     // public function edit(Recipe $recipe)
     // {
-        
+
     // }
 
     public function edit($id)
@@ -101,7 +160,7 @@ class RecipeController extends Controller
      */
     // public function update(Request $request, Recipe $recipe)
     // {
-        
+
     // }
 
     public function update(Request $request, $id)
@@ -115,12 +174,12 @@ class RecipeController extends Controller
             'ingredient' => 'required|string',
             'location' => 'required|string|max:255',
             'flow_cooking' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        
+
         if ($request->hasFile('image')) {
-            
+
             if ($recipe->image && Storage::disk('public')->exists('images/' . $recipe->image)) {
                 Storage::disk('public')->delete('images/' . $recipe->image);
             }
@@ -134,6 +193,15 @@ class RecipeController extends Controller
         $recipe->update($validatedData);
 
         return redirect()->route('recipe.show', $recipe->id_recipe)->with('success', 'Recipe updated successfully!');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $recipes = Recipe::where('name_recipe', 'like', '%' . $search . '%')->get();
+
+        return view('pencarian', compact('recipes'));
     }
 
 
@@ -156,5 +224,14 @@ class RecipeController extends Controller
 
         return redirect()->route('showOwnRecipe')->with('success', 'Recipe deleted successfully!');
     }
+
+    public function displayRecipe($id)
+    {
+        $recipe = Recipe::where('id_recipe', $id)->firstOrFail();
+        $comments = $recipe->comments()->latest()->get(); // Ambil komentar berdasarkan resep
+
+        return view('showRecipe', compact('recipe', 'comments'));
+    }
+
 
 }

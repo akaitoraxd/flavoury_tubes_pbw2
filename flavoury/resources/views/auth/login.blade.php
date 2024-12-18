@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flavoury Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+        @Vite('resources/css/app.css')
 </head>
 <body class="bg-[#F4F4F0] flex h-screen font-sans">
-    <!-- Left Section: Login Form -->
+    <!-- Left -->
     <div class="w-full lg:w-2/5 flex flex-col justify-center items-center bg-[#FFFFEC] p-8 lg:p-20 shadow-lg shadow-gray-300">
         <div class="w-full max-w-sm">
             <a href="/">
@@ -38,20 +39,20 @@
                     @endif
                 </div>
                 
-                <!-- Login Button -->
+                <!-- Login  -->
                 <div>
                     <button type="submit" class="w-full bg-gradient-to-r from-[#6A994E] to-[#4F7942] text-white font-semibold py-2 rounded shadow-md hover:from-[#4F7942] hover:to-[#6A994E] transition-all duration-300 transform hover:-translate-y-1">Log In</button>
                 </div>
                 
-                <!-- Sign Up Link -->
+                <!-- Sign Up -->
                 <div class="text-center text-gray-600 mt-6">
-                    Don’t have an account? <a href="{{ route('register') }}" class="font-semibold text-[#6A994E] hover:underline transition duration-300">Sign Up</a>
+                    don’t have an account? <a href="{{ route('register') }}" class="font-bold text-black hover:underline transition duration-300">Sign Up</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Right Section: Image -->
+    <!-- Right -->
     <div class="hidden lg:block w-3/5 bg-cover bg-center shadow-lg" style="background-image: url('storage/pasta.jpg');"></div>
 </body>
 </html>

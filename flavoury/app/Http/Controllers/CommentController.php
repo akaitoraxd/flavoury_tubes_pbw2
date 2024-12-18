@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\comment;
 use App\Http\Requests\StorecommentRequest;
 use App\Http\Requests\UpdatecommentRequest;
+use Illuminate\Http\Request;
+use App\Models\Recipe;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Collection;
 
 class CommentController extends Controller
 {
@@ -21,16 +26,41 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorecommentRequest $request)
+    public function store(Request $request)
     {
-        //
+        // Validasi data
+        $request->validate([
+            'id_recipe' => 'required|exists:recipes,id_recipe',
+            'comment' => 'required|string|max:1000',
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        // Simpan komentar ke database
+        $comment = Comment::create([
+            'id_recipe' => $request->id_recipe,
+            'id_user' => auth()->id(),
+            'comment' => $request->comment,
+            'rating' => $request->rating,
+        ]);
+
+        // Hitung rata-rata rating baru
+        $averageRating = Comment::where('id_recipe', $request->id_recipe)
+            ->avg('rating');
+
+        // Update rating di tabel recipes
+        $recipe = Recipe::find($request->id_recipe);
+        $recipe->rating = $averageRating;
+        $recipe->save();
+
+        return redirect()->back()->with('success', 'Komentar berhasil ditambahkan!');
     }
+
 
     /**
      * Display the specified resource.

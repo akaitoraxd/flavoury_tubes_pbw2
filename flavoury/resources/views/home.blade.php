@@ -4,207 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flavoury Sign Up</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    @Vite('resources/css/app.css')
+    <style>
+        .book:hover .cover {
+        transform: rotateY(-80deg);
+    }
+    </style>
 </head>
 <body class="bg-[#FFFFEC]">
-    <nav class="flex justify-between px-7 py-5 ">
-        <div>
-            <p class="text-2xl font-bold text-black italic">Flavoury</p>
+    
+    <x-navbar/>
+    <x-feedback/>
+
+    <a href="{{ route('showRecipe', $random1[0]->id_recipe) }}" class="flex flex-col md:flex-row h-auto md:h-96 mx-4 md:mx-20 bg-[#F1E4C3] rounded-md mt-8 md:mt-16">
+        <div class="w-full md:w-1/2 h-64 md:h-full overflow-hidden rounded-t-md md:rounded-l-md">
+            <img src="{{ asset('storage/images/' . $random1[0]->image) }}" alt="Recipe" class="object-cover w-full h-full">
         </div>
 
-        <div class="flex space-x-6 text-[20px]">
-            <div class="flex hover:border-b-2 border-black">
-                <img src="https://img.icons8.com/?size=100&id=i6fZC6wuprSu&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
-                <a href="/" class="">Home</a>
-            </div>
-            <div class="flex hover:border-b-2 border-black">
-                <img src="https://img.icons8.com/?size=100&id=85920&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
-                <a href="/recipe" class="">Recipe</a>
-            </div>
-            <div class="flex hover:border-b-2 border-black">
-                <img src="https://img.icons8.com/?size=100&id=85080&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
-                <a href="/market" class="">Market</a>
-            </div>
-            <div class="flex hover:border-b-2 border-black">
-                <img src="https://img.icons8.com/?size=100&id=1501&format=png&color=000000" alt="Search Icon" class="w-8 h-8 cursor-pointer hover:opacity-80">
-                <a href="/addrecipe" class="">Add</a>
-            </div>
-        </div>
-
-        <div class="flex items-center space-x-3">
-            <p>
-                <img src="https://img.icons8.com/?size=100&id=59878&format=png&color=000000" alt="Search Icon" class="w-9 h-9 cursor-pointer hover:opacity-80">
+        <div class="w-full md:w-1/2 h-auto md:h-full flex flex-col p-6 md:p-20 space-y-4 overflow-auto">
+            <h1 class="text-3xl md:text-5xl font-bold">{{$random1[0]->name_recipe}}</h1>
+            <p class="text-sm md:text-base break-words">
+                {{ $random1[0]->descrip_recipe }}
             </p>
-            <div class="w-9 h-9 rounded-full overflow-hidden hover:scale-110 duration-200 cursor-pointer">
-                <img src="/storage/pasta.jpg" alt="Recipe" class="object-cover w-full h-full">
-            </div>
-        </div>
-    </nav>
-
-    <div class="flex h-96 mx-20 bg-[#F1E4C3] rounded-md mt-16">
-        <div class="w-1/2 h-full  overflow-hidden rounded-l-md">
-            <img src="/storage/pasta.jpg" alt="Recipe" class="object-cover w-full h-full">
         </div>
 
-        <div class="w-1/2 h-full flex flex-col p-20 space-y-4">
-            <h1 class="text-5xl font-bold">Martabak</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab placeat facilis, cum nulla ad nemo quae consequatur cumque laboriosam distinctio illum. Officiis magni consequatur voluptas exercitationem iure quaerat placeat perspiciatis.</p>
-        </div>
-    </div>
+    </a>
 
     <section class="py-12">
-        <h2 class="text-3xl font-bold mb-8 ml-32">Kategori Teratas</h2>
+    <h2 class="text-3xl font-bold mb-8 text-center sm:text-left sm:ml-32">Resep Terbaru</h2>
+
         <div class="flex flex-wrap justify-center items-center space-x-6">
-            <div class="flex flex-col items-center">
+            @foreach ($newRecipe as $resep)
+            <a href="{{ route('showRecipe', $resep->id_recipe) }}" class="flex flex-col items-center">
                 <div class="w-48 h-48 rounded-full overflow-hidden hover:scale-110 duration-200">
-                    <img src="/storage/pasta.jpg" alt="Cake" class="object-cover w-full h-full">
+                    <img src="{{ asset('storage/images/' . $resep->image) }}" alt="Cake" class="object-cover w-full h-full">
                 </div>
-                <p class="font-semibold text-2xl mt-2">Cake</p>
-            </div>
-            <div class="flex flex-col items-center">
-                <div class="w-48 h-48 rounded-full overflow-hidden hover:scale-110 duration-200">
-                    <img src="/storage/pasta.jpg" alt="Cake" class="object-cover w-full h-full">
-                </div>
-                <p class="font-semibold text-2xl mt-2">Cake</p>
-            </div>
-            <div class="flex flex-col items-center">
-                <div class="w-48 h-48 rounded-full overflow-hidden hover:scale-110 duration-200">
-                    <img src="/storage/pasta.jpg" alt="Cake" class="object-cover w-full h-full">
-                </div>
-                <p class="font-semibold text-2xl mt-2">Cake</p>
-            </div>
-            <div class="flex flex-col items-center">
-                <div class="w-48 h-48 rounded-full overflow-hidden hover:scale-110 duration-200">
-                    <img src="/storage/pasta.jpg" alt="Cake" class="object-cover w-full h-full">
-                </div>
-                <p class="font-semibold text-2xl mt-2">Cake</p>
-            </div>
-            <div class="flex flex-col items-center">
-                <div class="w-48 h-48 rounded-full overflow-hidden hover:scale-110 duration-200">
-                    <img src="/storage/pasta.jpg" alt="Cake" class="object-cover w-full h-full">
-                </div>
-                <p class="font-semibold text-2xl mt-2">Cake</p>
-            </div>
-            <div class="flex flex-col items-center">
-                <div class="w-48 h-48 rounded-full overflow-hidden hover:scale-110 duration-200">
-                    <img src="/storage/pasta.jpg" alt="Cake" class="object-cover w-full h-full">
-                </div>
-                <p class="font-semibold text-2xl mt-2">Cake</p>
-            </div>
+                <p class="font-semibold text-2xl mt-2">{{$resep -> name_recipe}}</p>
+            </a>
+            @endforeach
         </div>
     </section>
 
     <section class="py-12">
-        <h1 class="font-bold text-3xl ml-32">Paling Nikmat</h1>
-        <div class="flex flex-wrap justify-center items-start gap-x-20">
+        <h1 class="font-bold text-3xl ml-32">Rating Tertiinggi</h1>
+        <div class="flex justify-center mx-0 sm:mx-28 sm:justify-between gap-x-4">
             <!-- card -->
-            <div class="feature w-80 bg-transparent space-y-1 mt-10">
-            <img src="storage/image1.png" class="w-full h-64 object-cover rounded-t-md">
-                <div class="flex items-center">
-                    <!-- Star 1 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
+            @foreach ($top3 as $resep)
+            <a href="{{ route('showRecipe', $resep->id_recipe) }}" class="w-[30%] h-auto bg-transparent space-y-1 mt-10">
+            <img src="{{ asset('storage/images/' . $resep->image) }}" class="w-full h-64 object-cover rounded-t-md">
+            <div class="flex items-center">
+                @for ($i = 1; $i <= 5; $i++)
+                    <svg class="w-6 h-6 {{ $i <= $resep->rating ? 'text-yellow-400' : 'text-gray-300' }}"
+                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
                     </svg>
-                    <!-- Star 2 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 3 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 4 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 5 -->
-                    <svg class="w-6 h-6 text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                </div>
-                <div class="feature-header flex justify-between items-center">
-                    <h3 class="text-lg text-gray-800 font-semibold">NASI GORENG</h3>
-                </div>
+                @endfor
             </div>
-            <!-- card -->
-            <div class="feature w-80 bg-transparent space-y-1 mt-10">
-            <img src="storage/image1.png" class="w-full h-64 object-cover rounded-t-md">
-                <div class="flex items-center">
-                    <!-- Star 1 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 2 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 3 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 4 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 5 -->
-                    <svg class="w-6 h-6 text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                </div>
                 <div class="feature-header flex justify-between items-center">
-                    <h3 class="text-lg text-gray-800 font-semibold">NASI GORENG</h3>
+                    <h3 class="text-lg text-gray-800 font-semibold">{{ $resep->name_recipe }}</h3>
                 </div>
+            </a>
+            @endforeach
+        
+        </div>
+
+        <div class="flex flex-wrap justify-center items-start gap-x-10 gap-y-7 mt-28">
+        @foreach ($random5 as $resep)
+            <div class="book relative w-[260px] h-[350px] rounded-[15px] bg-[#fffefe] shadow-[1px_1px_12px_#000] flex items-center justify-center text-black text-center" style="perspective: 2000px;">            
+                <div class="cover absolute top-0 z-[1] w-full h-full bg-cover bg-center origin-left rounded-[15px] flex flex-col justify-end transition-transform duration-700 ease-in-out hover:transform-[rotateY(-80deg)]" style="background-image: url('{{ asset('storage/images/' . $resep->image) }}');">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent rounded-[15px]"></div>
+                    <div class="relative z-10 p-4 text-right">
+                        <h1 class="text-white drop-shadow-md text-2xl font-bold">
+                            {{$resep->name_recipe}}
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="absolute w-full h-full flex flex-col items-center justify-center px-4 bg-[#F1E4C3] rounded-[15px] p-6 transform rotateY-180 backface-hidden shadow-inner">
+                    <p class="w-full text-sm text-gray-800 leading-relaxed text-center overflow-hidden mb-4" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; word-wrap: break-word; overflow: hidden;">
+                        {{$resep->descrip_recipe}}
+                    </p>
+                    <a href="{{ route('showRecipe', $resep->id_recipe) }}" class="bg-transparent border-2 border-black text-black text-sm font-semibold rounded-lg px-4 py-2 hover:bg-black hover:text-white transition duration-300">
+                        View Recipe
+                    </a>
+                </div>
+
             </div>
-            <!-- card -->
-            <div class="feature w-80 bg-transparent space-y-1 mt-10">
-            <img src="storage/image1.png" class="w-full h-64 object-cover rounded-t-md">
-                <div class="flex items-center">
-                    <!-- Star 1 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 2 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 3 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 4 -->
-                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                    <!-- Star 5 -->
-                    <svg class="w-6 h-6 text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.562 4.787h5.034c.969 0 1.371 1.24.588 1.81l-4.075 2.958 1.563 4.788c.3.921-.755 1.688-1.538 1.156L10 14.347l-4.075 2.959c-.783.532-1.838-.235-1.538-1.156l1.563-4.788-4.075-2.958c-.783-.57-.381-1.81.588-1.81h5.034l1.562-4.787z" />
-                    </svg>
-                </div>
-                <div class="feature-header flex justify-between items-center">
-                    <h3 class="text-lg text-gray-800 font-semibold">NASI GORENG</h3>
-                </div>
-            </div>
-            
-            
+            @endforeach
         </div>
     </section>
 
-    <footer class="bg-[#F1E4C3] text-center">
-        <div class="space-y-2 py-7 border-b-4 border-[#9B978D]">
-            <h1 class="text-3xl italic font-semibold">Flavoury</h1>
-            <p class="px-96">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur molestias facere dolores libero sit non numquam nostrum possimus rem consectetur fuga quaerat facilis nemo, totam ipsum culpa. Enim, cupiditate!</p>
-        </div>
-        <div class="flex items-center justify-between px-7 py-3">
-            <div>
-                <p>&copy;2024 Flavoury - All right reserved</p>
-            </div>
-            <div class="flex justify-center space-x-7">
-                <img src="https://img.icons8.com/?size=100&id=62225&format=png&color=000000"  alt="fb" class="w-5 h-5">
-                <img src="https://img.icons8.com/?size=100&id=437&format=png&color=000000"  alt="x" class="w-5 h-5">
-                <img src="https://img.icons8.com/?size=100&id=32292&format=png&color=000000"  alt="ig" class="w-5 h-5">
-            </div>
-        </div>
-    </footer>
+    <x-footer/>
     
 </body>
 </html>

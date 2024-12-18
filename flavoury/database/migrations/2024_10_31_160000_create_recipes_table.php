@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id("id_recipe");
             $table->unsignedBigInteger("id_user");
             $table->String("name_recipe", 100);
-            $table->char("descrip_recipe", 250);
-            $table->char("ingredient", 250);
-            $table->char("location", 100);
-            $table->char("flow_cooking", 250);
+            $table->text("descrip_recipe");
+            $table->text("ingredient");
+            $table->text("location");
+            $table->text("flow_cooking");
             $table->double("rating", 20)->default(0);
             $table->timestamps();
             $table->string("image",100);

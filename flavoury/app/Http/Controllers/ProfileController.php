@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
@@ -7,6 +6,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -24,17 +25,35 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Validasi input
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Jika ada file gambar yang di-upload
+        if ($request->hasFile('image')) {
+
+            // Hapus gambar lama jika ada
+            if ($user->image && Storage::disk('public')->exists('images/' . $user->image)) {
+                Storage::disk('public')->delete('images/' . $user->image); // Hapus gambar lama
+            }
+
+            // Simpan gambar baru
+            $filename = Str::random(40) . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('images', $filename, 'public');
+            $validatedData['image'] = $filename; // Simpan nama file gambar baru
         }
 
-        $request->user()->save();
+        // Perbarui data pengguna
+        $user->update($validatedData);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**

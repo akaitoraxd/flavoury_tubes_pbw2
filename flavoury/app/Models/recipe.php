@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class recipe extends Model
 {
+    // Menggunakan nama primary key jika tidak menggunakan 'id'
+    protected $primaryKey = 'id_recipe';
 
-    protected $primaryKey = 'id_recipe'; //primary key nya
+    // Kolom yang dapat diisi mass-assignable
     protected $fillable = [
         'name_recipe',
         'descrip_recipe',
@@ -17,6 +18,12 @@ class recipe extends Model
         'flow_cooking',
         'image',
         'id_user',
-        'rating'
+        'rating',
     ];
+
+    // Relasi dengan tabel comments (One to Many)
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'id_recipe');
+    }
 }

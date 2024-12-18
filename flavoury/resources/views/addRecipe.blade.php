@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Recipe</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    @Vite('resources/css/app.css')
+
 </head>
-<body class="bg-gray-100">
-    <a href="/dashboard" class="p-10">Home</a>
+<body class="bg-[#FFFFEC]">
+    <div class="ml-10 mt-10">
+        <a href="/home"
+            class="bg-[#C6A969] text-black py-2 px-6 rounded-md border border-black hover:bg-[#B89054] hover:shadow-lg shadow-[4px_4px_0px_rgba(105,63,35,0.7)] transition-all duration-300">
+            Back to Home
+        </a>
+    </div>
 
     <section class="flex flex-col justify-center items-center min-h-screen">
         <div class="flex flex-col justify-center items-center text-center mb-8">
@@ -36,7 +43,7 @@
 
             <div class="">
                 <label for="ingredient" class="font-semibold text-gray-700">Ingredient:</label>
-                <textarea id="ingredient" name="ingredient" required class="w-full p-2 border-2 rounded border-[#EDA16B]"></textarea>
+                <textarea id="ingredient" name="ingredient" required class="w-full p-2 border-2 rounded border-[#EDA16B]" placeholder="Note : pisahkan bahan dengan ','"></textarea>
             </div>
 
             <div class="">
@@ -46,7 +53,7 @@
 
             <div class="">
                 <label for="flow_cooking" class="font-semibold text-gray-700">Flow Cooking:</label>
-                <textarea id="flow_cooking" name="flow_cooking" required class="w-full p-2 border-2 rounded border-[#EDA16B]"></textarea>
+                <textarea id="flow_cooking" name="flow_cooking" required class="w-full p-2 border-2 rounded border-[#EDA16B]" placeholder="Note : pisahkan bahan dengan ','"></textarea>
             </div>
 
             <div class="">
