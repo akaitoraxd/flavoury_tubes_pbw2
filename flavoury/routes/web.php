@@ -70,4 +70,16 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
+Route::get('market', function() {
+    return view('market');
+});
+
+Route::get('cart', function() {
+    return view('cart');
+});
+
+Route::get('product', function() {
+    return view('product');
+});
+
 require __DIR__.'/auth.php';
