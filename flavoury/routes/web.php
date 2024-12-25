@@ -6,6 +6,7 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\MarketplaceController;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -81,5 +82,7 @@ Route::get('cart', function() {
 Route::get('product', function() {
     return view('product');
 });
+
+Route::get('/adminMarket',[MarketplaceController:: class, 'index'])->name('adminMarket');
 
 require __DIR__.'/auth.php';
