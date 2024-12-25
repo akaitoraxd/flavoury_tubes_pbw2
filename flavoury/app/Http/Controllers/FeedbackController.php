@@ -38,6 +38,7 @@ class FeedbackController extends Controller
         Feedback::create([
             'id_user' => auth()->id(),
             'feedback' => $request->input('feedback'),
+            'rating' => (1),
             'date' => now(),  
         ]);
 

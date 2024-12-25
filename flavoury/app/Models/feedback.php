@@ -10,7 +10,7 @@ class feedback extends Model
     use HasFactory;
 
     // Properti yang bisa diisi secara massal
-    protected $fillable = ['id_user', 'feedback', 'date'];
+    protected $fillable = ['id_user', 'feedback', 'date','rating'];
 
     public $timestamps = true;
 
