@@ -43,20 +43,6 @@
                         <button class="text-red-500 hover:underline ml-2" onclick="return confirm('Are you sure?')">Delete</button>
                     </td>
                 </tr>
-                <tr>
-                    <td class="border border-gray-300 px-4 py-2">Sample Item 2</td>
-                    <td class="border border-gray-300 px-4 py-2">Type B</td>
-                    <td class="border border-gray-300 px-4 py-2">This is another sample description.</td>
-                    <td class="border border-gray-300 px-4 py-2">$20.00</td>
-                    <td class="border border-gray-300 px-4 py-2">3</td>
-                    <td class="border border-gray-300 px-4 py-2">
-                        <img src="https://via.placeholder.com/50" alt="Sample Item 2" class="w-12 h-12">
-                    </td>
-                    <td class="border border-gray-300 px-4 py-2">
-                        <a href="#" class="text-yellow-500 hover:underline">Edit</a>
-                        <button class="text-red-500 hover:underline ml-2" onclick="return confirm('Are you sure?')">Delete</button>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>
