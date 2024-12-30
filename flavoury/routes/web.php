@@ -6,6 +6,7 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\MarketplaceController;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -69,5 +70,19 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
+Route::get('market', function() {
+    return view('market');
+});
+
+Route::get('cart', function() {
+    return view('cart');
+});
+
+Route::get('product', function() {
+    return view('product');
+});
+
+Route::get('/adminMarket',[MarketplaceController:: class, 'index'])->name('adminMarket');
 
 require __DIR__.'/auth.php';
