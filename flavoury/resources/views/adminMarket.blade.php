@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Items Management</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    @Vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100">
 <div class="container mx-auto mt-10 px-4">
     <h1 class="text-2xl font-bold mb-6">Items</h1>
 
-    <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4 inline-block">Add New Item</a>
+    <a href="{{ route('items.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4 inline-block">Add New Item</a>
 
     <div class="bg-green-100 text-green-700 p-4 rounded mb-4 hidden">Success message here</div>
 
@@ -29,20 +30,25 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($items as $item)
                 <tr>
-                    <td class="border border-gray-300 px-4 py-2">Sample Item 1</td>
-                    <td class="border border-gray-300 px-4 py-2">Type A</td>
-                    <td class="border border-gray-300 px-4 py-2">This is a sample description.</td>
-                    <td class="border border-gray-300 px-4 py-2">$10.00</td>
-                    <td class="border border-gray-300 px-4 py-2">5</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $item->name }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $item->type }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $item->description }}</td>
+                    <td class="border border-gray-300 px-4 py-2">Rp.{{ $item->price }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $item->sold_amount }}</td>
                     <td class="border border-gray-300 px-4 py-2">
-                        <img src="https://via.placeholder.com/50" alt="Sample Item 1" class="w-12 h-12">
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="w-20 h-20">
                     </td>
                     <td class="border border-gray-300 px-4 py-2">
-                        <a href="#" class="text-yellow-500 hover:underline">Edit</a>
-                        <button class="text-red-500 hover:underline ml-2" onclick="return confirm('Are you sure?')">Delete</button>
+                        <a href="{{ route('items.edit', $item->id) }}" class="text-yellow-500 hover:underline">Edit</a>
+                        <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="text-red-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
                     </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -7,6 +7,8 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\MarketplaceController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -17,8 +19,9 @@ Route::get('/ownProfile', function () {
 });
 
 Route::get('/recipe', function () {
-    return view('recipe');  
+    return view('recipe');
 });
+
 
 Route::get('/showRecipe/{id}', [RecipeController::class, 'showRecipes'])->name('showRecipe')->middleware(['auth', 'verified']);
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.store')->middleware(['auth', 'verified']);
@@ -31,19 +34,19 @@ Route::get('/pencarian', function () {
 
     if (request('search')) {
         $pencarian->where('name_recipe', 'like', '%' . request('search') . '%');
-    }else{
+    } else {
         $pencarian = DB::table('recipes')->latest()->take(10);
     }
 
-    
-    $pencarian = $pencarian->get(); 
+
+    $pencarian = $pencarian->get();
 
     return view('pencarian', compact('pencarian'));
 })->middleware(['auth', 'verified'])->name('pencarian');
 
 
-Route::get('/home' , [RecipeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-Route::get('/recipe' , [RecipeController::class, 'allRecipe'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/home', [RecipeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/recipe', [RecipeController::class, 'allRecipe'])->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/feedback', function () {
     return view('feedback');
@@ -71,18 +74,41 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
-Route::get('market', function() {
+Route::get('market', function () {
     return view('market');
+})->name('market');
+Route::get('/market', [MarketplaceController::class, 'indexMarket'])->name('marketplace.index');
+
+Route::get('/addItem', function () {
+    return view('addItem');
 });
 
-Route::get('cart', function() {
-    return view('cart');
-});
+Route::get('/addItem', [MarketplaceController::class, 'create'])->name('items.create');
+Route::post('/items', [MarketplaceController::class, 'store'])->name('items.store');
 
-Route::get('product', function() {
+Route::get('product', function () {
     return view('product');
 });
 
-Route::get('/adminMarket',[MarketplaceController:: class, 'index'])->name('adminMarket');
+Route::get('/adminMarket', [MarketplaceController::class, 'index'])->name('adminMarket');
 
-require __DIR__.'/auth.php';
+Route::get('/admin/items/create', [MarketplaceController::class, 'create'])->name('items.create');
+Route::post('/admin/items', [MarketplaceController::class, 'store'])->name('items.store');
+
+Route::get('/admin/items/{item}/edit', [MarketplaceController::class, 'edit'])->name('items.edit');
+
+Route::patch('/admin/items/{item}', [MarketplaceController::class, 'update'])->name('items.update');
+Route::put('/admin/items/{item}', [MarketplaceController::class, 'update'])->name('items.update');
+
+Route::delete('/admin/items/{item}', [MarketplaceController::class, 'destroy'])->name('items.destroy');
+
+Route::prefix('cart')->name('cart.')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('index');
+    Route::post('/add', [CartController::class, 'add'])->name('add');
+    Route::patch('/{id}/update', [CartController::class, 'update'])->name('update');
+    Route::delete('/{id}/remove', [CartController::class, 'remove'])->name('remove');
+});
+
+Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+
+require __DIR__ . '/auth.php';

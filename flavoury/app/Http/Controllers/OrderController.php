@@ -9,13 +9,11 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function checkout(Request $request){
-        $request->$request->add(['total_price'=>$request->qty * $request->price, 'status'=>'Unpaid']);
+        $request->merge(['status' => 'Unpaid']);
         $order = Order::create($request->all());
 
-        //SAMPLE REQUEST START HERE
-
         // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'midtrans.server_key';
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
         // Set sanitization on (default)
@@ -26,16 +24,17 @@ class OrderController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => $order->id,
-                'gross_amount' => $order->total_price,
+                'gross_amount' => $request->total_price,
             ),
             'customer_details' => array(
                 'name' => $request->name,
+                'address' => $request->address,
                 'phone' => $request->phone,
             ),
         );
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
+        dd($snapToken);
         return view('checkout', compact('snapToken', 'order'));
-
     }
 }

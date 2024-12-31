@@ -2,9 +2,9 @@
     <div class="space-y-2 py-7 border-b-4 border-[#9B978D] flex flex-col justify-center items-center">
         <!-- <h1 class="text-3xl italic font-semibold">Flavoury</h1> -->
         <img src="/storage/FLAVOURY.png" alt="" class="h-10">
-        <p class="lg:px-96 px-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur
-            molestias facere dolores libero sit non numquam nostrum possimus rem consectetur fuga quaerat facilis nemo,
-            totam ipsum culpa. Enim, cupiditate!</p>
+        <p class="lg:px-96 px-10">Temukan inspirasi resep kreatif, bagikan kreasi masakan, dan lengkapi kebutuhan dapur
+            Anda di satu tempat. Mulai dari bahan segar hingga alat masak berkualitas, kami siap membantu Anda
+            menciptakan hidangan terbaik</p>
     </div>
     <div class="flex items-center justify-between px-7 py-3">
         <div>

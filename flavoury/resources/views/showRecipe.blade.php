@@ -145,7 +145,7 @@
 
         <!-- commentar pengguna -->
         <div class="w-full mx-auto mt-6 p-6 ">
-            <h3 class="text-3xl font-bold mb-4">Komentar Pengguna</h3>
+            <h3 class="text-3xl font-bold mb-4">Komentar</h3>
 
             @foreach ($comments as $comment)
                 <div class="border-b pb-4 mb-4">
