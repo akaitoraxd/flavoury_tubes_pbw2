@@ -110,5 +110,6 @@ Route::prefix('cart')->name('cart.')->group(function () {
 });
 
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('invoice/{id}', [OrderController::class, 'invoice']);
 
 require __DIR__ . '/auth.php';
