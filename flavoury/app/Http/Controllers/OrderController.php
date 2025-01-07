@@ -57,5 +57,10 @@ class OrderController extends Controller
         $orders = Order::all();
         return view('listOrder', compact('orders'));
     }
+
+    public function indexUser(){
+        $orders = Order::all()->where('user_id', auth()->id());
+        return view('history', compact('orders'));
+    }
 }
 

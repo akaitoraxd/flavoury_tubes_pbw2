@@ -91,6 +91,13 @@
                             Settings
                         </p>
                     </a>
+                    <a href="/history"
+                        class="flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                        <p
+                            class="bg-[#FFFFEC] px-8 py-2 rounded-lg font-medium text-gray-700 shadow-md hover:bg-[#CBAC8B] hover:text-white transition-colors duration-300">
+                            history
+                        </p>
+                    </a>
                     <form method="POST" action="{{ route('logout') }}"
                         class="flex items-center justify-center hover:scale-105 transition-transform duration-300">
                         @csrf

@@ -13,7 +13,7 @@
         <h1 class="text-2xl font-bold mb-6">{{ isset($item) ? 'Edit' : 'Create' }} Item</h1>
 
         <!-- Form for creating or editing item -->
-        <form action="{{ isset($item) ? route('items.update', $item->id) : route('items.store') }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ isset($item) ? route('admin.items.update', $item->id) : route('items.store') }}" method="POST" enctype="multipart/form-data"
             class="bg-white p-6 rounded shadow-md">
             @csrf
             @if (isset($item))

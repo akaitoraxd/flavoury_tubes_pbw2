@@ -16,7 +16,7 @@
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4">Hasil Pencarian</h1>
         <form action="pencarian" method="GET">
             <input type="text" name="search" placeholder="Cari resep..." autocomplete="off">
-            <button type="submit">Cari</button>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Cari</button>
         </form>
 
     </div>

@@ -83,24 +83,23 @@ Route::get('/addItem', function () {
     return view('addItem');
 });
 
-Route::get('/addItem', [MarketplaceController::class, 'create'])->name('items.create');
-Route::post('/items', [MarketplaceController::class, 'store'])->name('items.store');
+Route::get('/addItem', [MarketplaceController::class, 'create'])->name('items.create')->middleware(['auth', 'verified','role:admin']);
+Route::post('/items', [MarketplaceController::class, 'store'])->name('items.store')->middleware(['auth', 'verified','role:admin']);
 
 Route::get('product', function () {
     return view('product');
 });
 
-Route::get('/adminMarket', [MarketplaceController::class, 'index'])->name('adminMarket');
+Route::get('/adminMarket', [MarketplaceController::class, 'index'])->name('adminMarket')->middleware(['auth', 'verified','role:admin']);
 
-Route::get('/admin/items/create', [MarketplaceController::class, 'create'])->name('admin.items.create');
-Route::post('/admin/items', [MarketplaceController::class, 'store'])->name('admin.items.store');
+Route::get('/admin/items/create', [MarketplaceController::class, 'create'])->name('admin.items.create')->middleware(['auth', 'verified','role:admin']);
+Route::post('/admin/items', [MarketplaceController::class, 'store'])->name('admin.items.store')->middleware(['auth', 'verified','role:admin']);
 
-Route::get('/admin/items/{item}/edit', [MarketplaceController::class, 'edit'])->name('items.edit');
+Route::get('/admin/items/{item}/edit', [MarketplaceController::class, 'edit'])->name('admin.items.edit')->middleware(['auth', 'verified','role:admin']);
 
-Route::patch('/admin/items/{item}', [MarketplaceController::class, 'update'])->name('admin.items.update');
-Route::put('/admin/items/{item}', [MarketplaceController::class, 'update'])->name('admin.items.updates');
+Route::put('/admin/items/{item}', [MarketplaceController::class, 'update'])->name('admin.items.update')->middleware(['auth', 'verified','role:admin']);
 
-Route::delete('/admin/items/{item}', [MarketplaceController::class, 'destroy'])->name('items.destroy');
+Route::delete('/admin/items/{item}', [MarketplaceController::class, 'destroy'])->name('items.destroy')->middleware(['auth', 'verified','role:admin']);
 
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');
@@ -112,7 +111,9 @@ Route::prefix('cart')->name('cart.')->group(function () {
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::get('invoice/{id}', [OrderController::class, 'invoice']);
 
-Route::get('/admin/ListFeedback', [FeedbackController::class, 'index'])->name('admin.ListFeedback');
-Route::get('/admin/ListOrder', [OrderController::class, 'index'])->name('admin.ListOrders');
+Route::get('/admin/ListFeedback', [FeedbackController::class, 'index'])->name('admin.ListFeedback')->middleware(['auth', 'verified','role:admin']);
+Route::get('/admin/ListOrder', [OrderController::class, 'index'])->name('admin.ListOrders')->middleware(['auth', 'verified','role:admin']);
+
+Route::get('/history', [OrderController::class, 'indexUser'])->name('history')->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';
