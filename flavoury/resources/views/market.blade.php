@@ -40,7 +40,7 @@
         <div class="grid grid-cols-5 gap-6">
             @foreach ($items as $item)
                 <div class="bg-white p-4 rounded-md shadow-md">
-                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}"
+                    <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->name }}"
                         class="w-full h-40 object-cover rounded-md">
                     <div class="text-center mt-4">
                         <h2 class="text-lg font-bold">{{ $item->name }}</h2>

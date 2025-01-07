@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\MarketplaceController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -108,5 +109,7 @@ Route::prefix('cart')->name('cart.')->group(function () {
     Route::delete('/{id}/remove', [CartController::class, 'remove'])->name('remove');
 });
 
+Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('invoice/{id}', [OrderController::class, 'invoice']);
 
 require __DIR__ . '/auth.php';
