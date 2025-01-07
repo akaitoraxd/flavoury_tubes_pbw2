@@ -12,7 +12,24 @@
 
 
     <script type="text/javascript">
-      window.snap.pay('{{$snapToken}}');
+      window.snap.pay('{{$snapToken}}', {
+        onSuccess: function(result){
+          window.location = '/invoice/{{$order->id}}';
+          console.log('success');
+          console.log(result);
+        },
+        onPending: function(result){
+          console.log('pending');
+          console.log(result);
+        },
+        onError: function(result){
+          console.log('error');
+          console.log(result);
+        },
+        onClose: function(){
+          console.log('customer closed the popup without finishing the payment');
+        }
+      });
     </script>
   </body>
 </html>
