@@ -16,6 +16,21 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('adminMarket')" :active="request()->routeIs('adminMarket')">
+                        {{ __('Matket Admin') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.ListFeedback')" :active="request()->routeIs('admin.ListFeedback')">
+                        {{ __('List Feedbacks') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.ListOrders')" :active="request()->routeIs('admin.ListOrders')">
+                        {{ __('List Orders') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

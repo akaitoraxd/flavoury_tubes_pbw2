@@ -46,7 +46,7 @@ Route::get('/pencarian', function () {
 
 
 Route::get('/home', [RecipeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-Route::get('/recipe', [RecipeController::class, 'allRecipe'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/recipe', [RecipeController::class, 'allRecipe'])->middleware(['auth', 'verified'])->name('recipe');
 
 Route::get('/feedback', function () {
     return view('feedback');
@@ -92,13 +92,13 @@ Route::get('product', function () {
 
 Route::get('/adminMarket', [MarketplaceController::class, 'index'])->name('adminMarket');
 
-Route::get('/admin/items/create', [MarketplaceController::class, 'create'])->name('items.create');
-Route::post('/admin/items', [MarketplaceController::class, 'store'])->name('items.store');
+Route::get('/admin/items/create', [MarketplaceController::class, 'create'])->name('admin.items.create');
+Route::post('/admin/items', [MarketplaceController::class, 'store'])->name('admin.items.store');
 
 Route::get('/admin/items/{item}/edit', [MarketplaceController::class, 'edit'])->name('items.edit');
 
-Route::patch('/admin/items/{item}', [MarketplaceController::class, 'update'])->name('items.update');
-Route::put('/admin/items/{item}', [MarketplaceController::class, 'update'])->name('items.update');
+Route::patch('/admin/items/{item}', [MarketplaceController::class, 'update'])->name('admin.items.update');
+Route::put('/admin/items/{item}', [MarketplaceController::class, 'update'])->name('admin.items.updates');
 
 Route::delete('/admin/items/{item}', [MarketplaceController::class, 'destroy'])->name('items.destroy');
 
@@ -111,5 +111,8 @@ Route::prefix('cart')->name('cart.')->group(function () {
 
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::get('invoice/{id}', [OrderController::class, 'invoice']);
+
+Route::get('/admin/ListFeedback', [FeedbackController::class, 'index'])->name('admin.ListFeedback');
+Route::get('/admin/ListOrder', [OrderController::class, 'index'])->name('admin.ListOrders');
 
 require __DIR__ . '/auth.php';

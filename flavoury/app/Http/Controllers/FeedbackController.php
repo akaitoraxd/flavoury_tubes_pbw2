@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB;
 use Illuminate\Http\Request;
 
 use App\Models\feedback;
@@ -14,7 +15,8 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        $listFeedback = feedback::all();
+        return view('feedbackPage', compact('listFeedback'));
     }
 
     /**
@@ -78,4 +80,6 @@ class FeedbackController extends Controller
     {
         //
     }
+
+    
 }

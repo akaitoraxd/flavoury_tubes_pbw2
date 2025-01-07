@@ -17,4 +17,9 @@ class feedback extends Model
     protected $casts = [
         'date' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }
