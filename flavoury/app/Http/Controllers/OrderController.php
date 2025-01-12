@@ -54,12 +54,12 @@ class OrderController extends Controller
     }
 
     public function index(){
-        $orders = Order::all();
+        $orders = Order::query()->orderBy('created_at', 'desc')->get();
         return view('listOrder', compact('orders'));
     }
 
     public function indexUser(){
-        $orders = Order::all()->where('user_id', auth()->id());
+        $orders = Order::query()->where('user_id', auth()->id())->orderBy('created_at', 'desc')->get();
         return view('history', compact('orders'));
     }
 }

@@ -25,7 +25,7 @@
                                     <th class="border px-4 py-2"><x-input-label>Type</x-input-label></th>
                                     <th class="border px-4 py-2"><x-input-label>Description</x-input-label></th>
                                     <th class="border px-4 py-2"><x-input-label>Price</x-input-label></th>
-                                    <th class="border px-4 py-2"><x-input-label>Sold Amount</x-input-label></th>
+                                    <!-- <th class="border px-4 py-2"><x-input-label>Sold Amount</x-input-label></th> -->
                                     <th class="border px-4 py-2"><x-input-label>Image</x-input-label></th>
                                     <th class="border px-4 py-2"><x-input-label>Actions</x-input-label></th>
                                 </tr>
@@ -37,7 +37,7 @@
                                         <td class="border border-gray-300 px-4 py-2"><x-input-label>{{ $item->type }}</x-input-label></td>
                                         <td class="border border-gray-300 px-4 py-2"><x-input-label>{{ $item->description }}</x-input-label></td>
                                         <td class="border border-gray-300 px-4 py-2"><x-input-label>Rp.{{ $item->price }}</x-input-label></td>
-                                        <td class="border border-gray-300 px-4 py-2"><x-input-label>{{ $item->sold_amount }}</x-input-label></td>
+                                        <!-- <td class="border border-gray-300 px-4 py-2"><x-input-label>{{ $item->sold_amount }}</x-input-label></td> -->
                                         <td class="border border-gray-300 px-4 py-2">
                                             <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}"
                                                 class="w-20 h-20">
